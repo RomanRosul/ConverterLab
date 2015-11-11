@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "RRRNavigationController.h"
+#import "RRRTableViewcontroller.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,19 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // Override point for customization after application launch.
+  
+  RRRTableViewController * commonListTableViewController = [[RRRTableViewController alloc] initWithStyle:UITableViewStylePlain];
+  
+  RRRNavigationController * commonNavController = [[RRRNavigationController alloc] initWithRootViewController:commonListTableViewController];
+  
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]bounds]];  
+  
+  self.window.rootViewController = commonNavController;
+  [self.window makeKeyAndVisible];
+
+  
+  
+  
   return YES;
 }
 

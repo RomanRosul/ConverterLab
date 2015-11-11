@@ -7,27 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30D266461BF3C0EC00261977 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266451BF3C0EC00261977 /* main.m */; };
 		30D266491BF3C0EC00261977 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266481BF3C0EC00261977 /* AppDelegate.m */; };
-		30D2664C1BF3C0EC00261977 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2664B1BF3C0EC00261977 /* ViewController.m */; };
-		30D2664F1BF3C0EC00261977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D2664D1BF3C0EC00261977 /* Main.storyboard */; };
-		30D266521BF3C0EC00261977 /* ConverterLab.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30D266501BF3C0EC00261977 /* ConverterLab.xcdatamodeld */; };
 		30D266541BF3C0EC00261977 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D266531BF3C0EC00261977 /* Assets.xcassets */; };
-		30D266571BF3C0EC00261977 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D266551BF3C0EC00261977 /* LaunchScreen.storyboard */; };
+		30D266681BF3C1EB00261977 /* ConverterLab.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30D266631BF3C1EB00261977 /* ConverterLab.xcdatamodeld */; };
+		30D2666A1BF3C1EB00261977 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266671BF3C1EB00261977 /* main.m */; };
+		30D266711BF3C2EB00261977 /* RRRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266701BF3C2EB00261977 /* RRRNavigationController.m */; };
+		30D266751BF3C30F00261977 /* RRRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266731BF3C30F00261977 /* RRRTableViewController.m */; };
+		30D266781BF3C35E00261977 /* RRRTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D266771BF3C35E00261977 /* RRRTableViewController.xib */; };
+		30D2667C1BF3C43D00261977 /* RRRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2667A1BF3C43D00261977 /* RRRTableViewCell.m */; };
+		30D2667D1BF3C43D00261977 /* RRRTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D2667B1BF3C43D00261977 /* RRRTableViewCell.xib */; };
+		30D266801BF3C4BF00261977 /* RRRDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2667F1BF3C4BF00261977 /* RRRDataBaseManager.m */; };
+		30D266821BF3CAAD00261977 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30D266811BF3CAAD00261977 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		30D266411BF3C0EC00261977 /* ConverterLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConverterLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		30D266451BF3C0EC00261977 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		30D266471BF3C0EC00261977 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		30D266481BF3C0EC00261977 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		30D2664A1BF3C0EC00261977 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		30D2664B1BF3C0EC00261977 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		30D2664E1BF3C0EC00261977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		30D266511BF3C0EC00261977 /* ConverterLab.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConverterLab.xcdatamodel; sourceTree = "<group>"; };
 		30D266531BF3C0EC00261977 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		30D266561BF3C0EC00261977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		30D266581BF3C0EC00261977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30D266641BF3C1EB00261977 /* ConverterLab.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConverterLab.xcdatamodel; sourceTree = "<group>"; };
+		30D266661BF3C1EB00261977 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30D266671BF3C1EB00261977 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		30D2666F1BF3C2EB00261977 /* RRRNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRNavigationController.h; sourceTree = "<group>"; };
+		30D266701BF3C2EB00261977 /* RRRNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRNavigationController.m; sourceTree = "<group>"; };
+		30D266721BF3C30F00261977 /* RRRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRTableViewController.h; sourceTree = "<group>"; };
+		30D266731BF3C30F00261977 /* RRRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRTableViewController.m; sourceTree = "<group>"; };
+		30D266771BF3C35E00261977 /* RRRTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRTableViewController.xib; sourceTree = "<group>"; };
+		30D266791BF3C43D00261977 /* RRRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRTableViewCell.h; sourceTree = "<group>"; };
+		30D2667A1BF3C43D00261977 /* RRRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRTableViewCell.m; sourceTree = "<group>"; };
+		30D2667B1BF3C43D00261977 /* RRRTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRTableViewCell.xib; sourceTree = "<group>"; };
+		30D2667E1BF3C4BF00261977 /* RRRDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRDataBaseManager.h; sourceTree = "<group>"; };
+		30D2667F1BF3C4BF00261977 /* RRRDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRDataBaseManager.m; sourceTree = "<group>"; };
+		30D266811BF3CAAD00261977 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +55,7 @@
 		30D266381BF3C0EC00261977 = {
 			isa = PBXGroup;
 			children = (
+				30D266811BF3CAAD00261977 /* Default-568h@2x.png */,
 				30D266431BF3C0EC00261977 /* ConverterLab */,
 				30D266421BF3C0EC00261977 /* Products */,
 			);
@@ -60,26 +72,80 @@
 		30D266431BF3C0EC00261977 /* ConverterLab */ = {
 			isa = PBXGroup;
 			children = (
+				30D2665E1BF3C1EB00261977 /* Classes */,
+				30D266621BF3C1EB00261977 /* CoreData */,
+				30D266651BF3C1EB00261977 /* Supporting Files */,
 				30D266471BF3C0EC00261977 /* AppDelegate.h */,
 				30D266481BF3C0EC00261977 /* AppDelegate.m */,
-				30D2664A1BF3C0EC00261977 /* ViewController.h */,
-				30D2664B1BF3C0EC00261977 /* ViewController.m */,
-				30D2664D1BF3C0EC00261977 /* Main.storyboard */,
 				30D266531BF3C0EC00261977 /* Assets.xcassets */,
-				30D266551BF3C0EC00261977 /* LaunchScreen.storyboard */,
-				30D266581BF3C0EC00261977 /* Info.plist */,
-				30D266501BF3C0EC00261977 /* ConverterLab.xcdatamodeld */,
-				30D266441BF3C0EC00261977 /* Supporting Files */,
 			);
 			path = ConverterLab;
 			sourceTree = "<group>";
 		};
-		30D266441BF3C0EC00261977 /* Supporting Files */ = {
+		30D2665E1BF3C1EB00261977 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				30D266451BF3C0EC00261977 /* main.m */,
+				30D2665F1BF3C1EB00261977 /* Controllers */,
+				30D266601BF3C1EB00261977 /* Models */,
+				30D266611BF3C1EB00261977 /* Views */,
 			);
-			name = "Supporting Files";
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		30D2665F1BF3C1EB00261977 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				30D2666E1BF3C2A500261977 /* ViewControllers */,
+				30D2667E1BF3C4BF00261977 /* RRRDataBaseManager.h */,
+				30D2667F1BF3C4BF00261977 /* RRRDataBaseManager.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		30D266601BF3C1EB00261977 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		30D266611BF3C1EB00261977 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				30D266771BF3C35E00261977 /* RRRTableViewController.xib */,
+				30D266791BF3C43D00261977 /* RRRTableViewCell.h */,
+				30D2667A1BF3C43D00261977 /* RRRTableViewCell.m */,
+				30D2667B1BF3C43D00261977 /* RRRTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		30D266621BF3C1EB00261977 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				30D266631BF3C1EB00261977 /* ConverterLab.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		30D266651BF3C1EB00261977 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				30D266661BF3C1EB00261977 /* Info.plist */,
+				30D266671BF3C1EB00261977 /* main.m */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		30D2666E1BF3C2A500261977 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				30D2666F1BF3C2EB00261977 /* RRRNavigationController.h */,
+				30D266701BF3C2EB00261977 /* RRRNavigationController.m */,
+				30D266721BF3C30F00261977 /* RRRTableViewController.h */,
+				30D266731BF3C30F00261977 /* RRRTableViewController.m */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,9 +205,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30D266571BF3C0EC00261977 /* LaunchScreen.storyboard in Resources */,
+				30D2667D1BF3C43D00261977 /* RRRTableViewCell.xib in Resources */,
+				30D266821BF3CAAD00261977 /* Default-568h@2x.png in Resources */,
+				30D266781BF3C35E00261977 /* RRRTableViewController.xib in Resources */,
 				30D266541BF3C0EC00261977 /* Assets.xcassets in Resources */,
-				30D2664F1BF3C0EC00261977 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,33 +219,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30D266521BF3C0EC00261977 /* ConverterLab.xcdatamodeld in Sources */,
-				30D2664C1BF3C0EC00261977 /* ViewController.m in Sources */,
+				30D2667C1BF3C43D00261977 /* RRRTableViewCell.m in Sources */,
+				30D266681BF3C1EB00261977 /* ConverterLab.xcdatamodeld in Sources */,
+				30D2666A1BF3C1EB00261977 /* main.m in Sources */,
+				30D266711BF3C2EB00261977 /* RRRNavigationController.m in Sources */,
 				30D266491BF3C0EC00261977 /* AppDelegate.m in Sources */,
-				30D266461BF3C0EC00261977 /* main.m in Sources */,
+				30D266751BF3C30F00261977 /* RRRTableViewController.m in Sources */,
+				30D266801BF3C4BF00261977 /* RRRDataBaseManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		30D2664D1BF3C0EC00261977 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				30D2664E1BF3C0EC00261977 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		30D266551BF3C0EC00261977 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				30D266561BF3C0EC00261977 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		30D266591BF3C0EC00261977 /* Debug */ = {
@@ -264,8 +315,8 @@
 		30D2665C1BF3C0EC00261977 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = ConverterLab/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ConverterLab/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "iOS-courses-FinalTask.ConverterLab";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -275,8 +326,8 @@
 		30D2665D1BF3C0EC00261977 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = ConverterLab/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ConverterLab/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "iOS-courses-FinalTask.ConverterLab";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -302,16 +353,17 @@
 				30D2665D1BF3C0EC00261977 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		30D266501BF3C0EC00261977 /* ConverterLab.xcdatamodeld */ = {
+		30D266631BF3C1EB00261977 /* ConverterLab.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				30D266511BF3C0EC00261977 /* ConverterLab.xcdatamodel */,
+				30D266641BF3C1EB00261977 /* ConverterLab.xcdatamodel */,
 			);
-			currentVersion = 30D266511BF3C0EC00261977 /* ConverterLab.xcdatamodel */;
+			currentVersion = 30D266641BF3C1EB00261977 /* ConverterLab.xcdatamodel */;
 			path = ConverterLab.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

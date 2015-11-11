@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  RRRNavigationController.h
 //  ConverterLab
 //
 //  Created by Roman R on 11.11.15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface RRRNavigationController : UINavigationController
 
 @end
-
