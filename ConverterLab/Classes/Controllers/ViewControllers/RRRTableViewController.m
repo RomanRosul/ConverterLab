@@ -8,6 +8,7 @@
 
 #import "RRRTableViewController.h"
 #import "RRRTableViewCell.h"
+#import "RRRNetworkManager.h"
 
 @interface RRRTableViewController ()
 
@@ -25,8 +26,9 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   UINib * cellNib = [UINib nibWithNibName:@"RRRTableViewCell" bundle:nil];
   [self.tableView registerNib:cellNib forCellReuseIdentifier:RRRCellIdentifier];
   
-  UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(navBarSearchButtonPressed)];
-  self.navigationItem.rightBarButtonItem = searchButton;
+  UIImage* navBarSearchImage = [UIImage imageNamed:@"ic_search"];
+  UIBarButtonItem *navBarSearchButton = [[UIBarButtonItem alloc] initWithImage:navBarSearchImage style:UIBarButtonItemStylePlain target:self action:@selector(navBarSearchButtonPressed)];
+  self.navigationItem.rightBarButtonItem = navBarSearchButton;
   
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -41,6 +43,9 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 }
 
 - (void)navBarSearchButtonPressed{
+  RRRNetworkManager * nm = [RRRNetworkManager new];
+  nm.delegateInstance = self;
+  [nm log];
   
 }
 
@@ -105,21 +110,35 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 }
 */
 
-/*
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
+     // Navigation logic may go here, for example:
     // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+     //*detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];<#DetailViewController#>
     
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+   // [self.navigationController pushViewController:detailViewController animated:YES];
 }
-*/
+
+-(void)dataSourceDidUpdated:(NSDictionary *)fetchedData
+{
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString * fileName = [documentsDirectory stringByAppendingPathComponent:@"org.plist"];
+  NSArray * organizations = [fetchedData objectForKey:@"organizations"];
+ 
+  if ([organizations writeToFile:fileName atomically:NO]) {
+    NSLog(@"callback %@",organizations);
+  }
+   NSLog(@"callback %lu",organizations.count);
+  
+}
+
 
 /*
 #pragma mark - Navigation
