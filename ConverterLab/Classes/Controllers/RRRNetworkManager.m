@@ -7,6 +7,7 @@
 //
 
 #import "RRRNetworkManager.h"
+#import "RRRDataBaseManager.h"
 #import "AFHTTPSessionManager.h"
 #import "AFHTTPRequestOperation.h"
 
@@ -24,11 +25,23 @@
   if (self)
   {
     self.dataSourceUrl = [NSURL URLWithString:@"http://resources.finance.ua/ru/public/currency-cash.json"];
+    self.delegateInstance = [RRRDataBaseManager sharedDBManager];
   }
   return self;
 }
 
-- (void) log {
++ (instancetype)sharedNetworkManager
+{
+  static id sharedInstance = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    sharedInstance = [[self alloc] init];
+  });
+  return sharedInstance;
+}
+
+
+- (void) refreshDataSourceFromWeb {
   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
   manager.requestSerializer = [AFJSONRequestSerializer serializer];
   [manager GET:[self.dataSourceUrl absoluteString]
@@ -36,7 +49,7 @@
        success:^(NSURLSessionDataTask *task, id responseObject) {
          //_newsItems = (NSArray *)responseObject;
          NSDictionary * responseDictionary  = (NSMutableDictionary *)responseObject;
-         [self.delegateInstance dataSourceDidUpdated:responseDictionary];
+         [self.delegateInstance webDataSourceDidUpdated:responseDictionary];
        }
        failure:^(NSURLSessionDataTask *task, NSError *error) {
          NSLog(@"JSON Error");

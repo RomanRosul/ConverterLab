@@ -8,7 +8,7 @@
 
 #import "RRRTableViewController.h"
 #import "RRRTableViewCell.h"
-#import "RRRNetworkManager.h"
+//#import "RRRNetworkManager.h"
 
 @interface RRRTableViewController ()
 
@@ -43,10 +43,7 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 }
 
 - (void)navBarSearchButtonPressed{
-  RRRNetworkManager * nm = [RRRNetworkManager new];
-  nm.delegateInstance = self;
-  [nm log];
-  
+   [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];  
 }
 
 #pragma mark - Table view data source
@@ -123,20 +120,6 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
     
     // Push the view controller.
    // [self.navigationController pushViewController:detailViewController animated:YES];
-}
-
--(void)dataSourceDidUpdated:(NSDictionary *)fetchedData
-{
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-  NSString *documentsDirectory = [paths objectAtIndex:0];
-  NSString * fileName = [documentsDirectory stringByAppendingPathComponent:@"org.plist"];
-  NSArray * organizations = [fetchedData objectForKey:@"organizations"];
- 
-  if ([organizations writeToFile:fileName atomically:NO]) {
-    NSLog(@"callback %@",organizations);
-  }
-   NSLog(@"callback %lu",organizations.count);
-  
 }
 
 

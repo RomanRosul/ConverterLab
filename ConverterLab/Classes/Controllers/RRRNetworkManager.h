@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol fetchedDataDelegate <NSObject>
+@protocol FetchedWebDataDelegate <NSObject>
 @required
-- (void)dataSourceDidUpdated:(NSDictionary *)fetchedData;
+- (void)webDataSourceDidUpdated:(NSDictionary *)fetchedData;
 @end
 
 
@@ -18,6 +18,7 @@ typedef void (^operationCompleteBlock) (BOOL success, NSDictionary * result);
 
 @interface RRRNetworkManager : NSObject
 @property (nonatomic) NSURL * dataSourceUrl;
-@property (nonatomic, weak) id <fetchedDataDelegate> delegateInstance;
-- (void) log;
+@property (nonatomic, weak) id <FetchedWebDataDelegate> delegateInstance;
++ (instancetype)sharedNetworkManager;
+- (void) refreshDataSourceFromWeb;
 @end

@@ -7,7 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import "RRRNetworkManager.h"
 
-@interface RRRDataBaseManager : NSObject
+@interface RRRDataBaseManager : NSObject <FetchedWebDataDelegate>
+
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
++ (instancetype)sharedDBManager;
+- (void)saveContext;
+- (NSURL *)applicationDocumentsDirectory;
 
 @end

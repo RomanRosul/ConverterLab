@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RRRNetworkManager.h"
+#import "RRRDataBaseManager.h"
 
-@interface RRRTableViewController : UITableViewController <fetchedDataDelegate>
+@interface RRRTableViewController : UITableViewController 
 
 @end

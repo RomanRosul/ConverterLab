@@ -10,4 +10,15 @@
 
 @implementation RRRSingleOrganization
 
+-(instancetype)init
+{
+  self = [super init];
+  if (self)
+  {
+    self.currencies = [[NSMutableArray alloc] init];
+    
+  }
+  return self;
+}
+
 @end
