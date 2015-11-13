@@ -2,7 +2,7 @@
 //  RRRTableViewCell.m
 //  ConverterLab
 //
-//  Created by Roman R on 11.11.15.
+//  Created by Roman R on 13.11.15.
 //  Copyright © 2015 iOS_courses_FinalTask. All rights reserved.
 //
 
@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+  
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

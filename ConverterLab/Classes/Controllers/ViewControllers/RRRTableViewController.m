@@ -15,6 +15,7 @@
 @end
 
 @implementation RRRTableViewController
+@synthesize dataFetchedResultsController = __dataFetchedResultsController;
 
 static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 
@@ -22,90 +23,158 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
     [super viewDidLoad];
   
   self.title = @"Converter Lab";
-  
   UINib * cellNib = [UINib nibWithNibName:@"RRRTableViewCell" bundle:nil];
   [self.tableView registerNib:cellNib forCellReuseIdentifier:RRRCellIdentifier];
   
   UIImage* navBarSearchImage = [UIImage imageNamed:@"ic_search"];
   UIBarButtonItem *navBarSearchButton = [[UIBarButtonItem alloc] initWithImage:navBarSearchImage style:UIBarButtonItemStylePlain target:self action:@selector(navBarSearchButtonPressed)];
   self.navigationItem.rightBarButtonItem = navBarSearchButton;
-  
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.dataFetchedResultsController.delegate = self;
+  [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];
+  [self addSearchBar];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - Search Bar delegate
+-(void)addSearchBar
+{
+    self.searchBar = [[UISearchBar alloc] init];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchBar.delegate = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;  
+    self.searchController.searchBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)navBarSearchButtonPressed{
-   [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];  
+  self.tableView.tableHeaderView = self.searchController.searchBar;
+  self.searchController.active = YES;
 }
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+  self.tableView.tableHeaderView = nil;
+  self.searchController.searchBar.text = nil;
+  [self refreshContent];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+  [self refreshContent]; }
+
+- (void)refreshContent {
+  self.dataFetchedResultsController = nil;
+  [self dataFetchedResultsController];
+  [self.tableView reloadData];}
+
+#pragma mark - CoreData Fetched results controler
+
+- (NSFetchedResultsController *)dataFetchedResultsController
+{
+  if (__dataFetchedResultsController != nil) {
+    return __dataFetchedResultsController;
+  }
+  
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Organization" inManagedObjectContext:[RRRDataBaseManager sharedDBManager].managedObjectContext];
+  [fetchRequest setEntity:entity];
+  [fetchRequest setFetchBatchSize:20];
+  
+  if (self.searchController.searchBar.text != (id)[NSNull null] && self.searchController.searchBar.text > 0)  {
+    [fetchRequest setPredicate:[self getPredicate]];
+  }
+  
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+  NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+  
+  [fetchRequest setSortDescriptors:sortDescriptors];
+  
+  
+  NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[RRRDataBaseManager sharedDBManager].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+  
+  self.dataFetchedResultsController = aFetchedResultsController;
+  
+  NSError *error = nil;
+  if (![self.dataFetchedResultsController performFetch:&error]) {
+    /*
+     Replace this implementation with code to handle the error appropriately.
+     
+     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+     */
+    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    abort();
+  }
+  return __dataFetchedResultsController;
+}
+
+
+- (NSCompoundPredicate *)getPredicate {
+  
+  NSString *searchText = self.searchController.searchBar.text;
+  NSString *strippedString = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  NSArray *searchItems = nil;
+  if (strippedString.length > 0) {
+    searchItems = [strippedString componentsSeparatedByString:@" "];
+  }
+  
+  NSMutableArray *andMatchPredicates = [NSMutableArray array];
+  
+  for (NSString *searchString in searchItems) {
+    NSMutableArray *searchItemsPredicate = [NSMutableArray array];
+    
+    NSPredicate *finalPredicate = [NSPredicate predicateWithFormat:@"title LIKE[c] %@", [NSString stringWithFormat:@"*%@*",searchString]];
+    [searchItemsPredicate addObject:finalPredicate];
+    
+    finalPredicate = [NSPredicate predicateWithFormat:@"region LIKE[c] %@", [NSString stringWithFormat:@"*%@*",searchString]];
+    [searchItemsPredicate addObject:finalPredicate];
+    
+    finalPredicate = [NSPredicate predicateWithFormat:@"city LIKE[c] %@", [NSString stringWithFormat:@"*%@*",searchString]];
+    [searchItemsPredicate addObject:finalPredicate];    
+    
+    NSCompoundPredicate *orMatchPredicates = [NSCompoundPredicate orPredicateWithSubpredicates:searchItemsPredicate];
+    [andMatchPredicates addObject:orMatchPredicates];
+  }
+    NSCompoundPredicate *finalCompoundPredicate =
+  [NSCompoundPredicate andPredicateWithSubpredicates:andMatchPredicates];
+  
+  return finalCompoundPredicate;
+}
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 1;
+  // NSLog(@"i = %li",[[self.dataFetchedResultsController sections] count]);
+  return [[self.dataFetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 1;
-}
+  id <NSFetchedResultsSectionInfo> sectionInfo = [[self.dataFetchedResultsController sections] objectAtIndex:section];
+ // NSLog(@"i = %li",[sectionInfo numberOfObjects]);
+
+  return [sectionInfo numberOfObjects];}
+
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RRRCellIdentifier forIndexPath:indexPath];
+    RRRTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RRRCellIdentifier forIndexPath:indexPath];
     
   if (cell == nil) {
     cell = [[RRRTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                     reuseIdentifier:RRRCellIdentifier];
   }
-  
-  //[self configureCell:cell atIndexPath:indexPath];
-  
-    return cell;
+  [self configureCell:cell atIndexPath:indexPath];
+  return cell;
+}
+
+- (void)configureCell:(RRRTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+  NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:indexPath];
+  cell.titleLabel.text = [managedObject valueForKey:@"title"];
+  cell.regionLabel.text = [managedObject valueForKey:@"region"];
+  cell.cityLabel.text = [managedObject valueForKey:@"city"];
+  cell.phoneLabel.text = [NSString stringWithFormat:@"Тел: %@",[managedObject valueForKey:@"phone"]];
+  cell.addressLabel.text = [NSString stringWithFormat:@"Адрес: %@",[managedObject valueForKey:@"address"]];
+
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Table view delegate
@@ -122,15 +191,12 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
    // [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+#pragma mark - FetchedResultsControllerdelegate
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
+  [self.tableView reloadData];
 }
-*/
+
+
 
 @end

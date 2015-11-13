@@ -10,6 +10,10 @@
 #import "RRRNetworkManager.h"
 #import "RRRDataBaseManager.h"
 
-@interface RRRTableViewController : UITableViewController 
+@interface RRRTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate>//, //UISearchControllerDelegate, UISearchResultsUpdating>
+
+@property (strong, nonatomic) NSFetchedResultsController *dataFetchedResultsController;
+@property (strong, nonatomic) UISearchBar *searchBar;
+@property (strong, nonatomic) UISearchController *searchController;
 
 @end

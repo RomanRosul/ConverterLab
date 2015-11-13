@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RRRSingleCurrency : NSObject
+@interface RRRSingleCurrency : NSCoder
 
 @property (strong,nonatomic) NSString * localizedTitle;
 @property (strong,nonatomic) NSString * keyTitle;

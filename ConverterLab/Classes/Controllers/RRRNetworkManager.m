@@ -47,7 +47,6 @@
   [manager GET:[self.dataSourceUrl absoluteString]
     parameters:nil
        success:^(NSURLSessionDataTask *task, id responseObject) {
-         //_newsItems = (NSArray *)responseObject;
          NSDictionary * responseDictionary  = (NSMutableDictionary *)responseObject;
          [self.delegateInstance webDataSourceDidUpdated:responseDictionary];
        }

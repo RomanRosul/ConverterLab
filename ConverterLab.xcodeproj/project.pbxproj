@@ -10,14 +10,14 @@
 		30A6CE701BF4A9730040ACC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE6F1BF4A9730040ACC0 /* AppDelegate.m */; };
 		30A6CE731BF4A9A30040ACC0 /* RRRSingleCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE721BF4A9A30040ACC0 /* RRRSingleCurrency.m */; };
 		30A6CE761BF4A9BC0040ACC0 /* RRRSingleOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE751BF4A9BC0040ACC0 /* RRRSingleOrganization.m */; };
+		30D0061A1BF620D200550E3F /* RRRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D006181BF620D200550E3F /* RRRTableViewCell.m */; };
+		30D0061B1BF620D200550E3F /* RRRTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D006191BF620D200550E3F /* RRRTableViewCell.xib */; };
 		30D266541BF3C0EC00261977 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D266531BF3C0EC00261977 /* Assets.xcassets */; };
 		30D266681BF3C1EB00261977 /* ConverterLab.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30D266631BF3C1EB00261977 /* ConverterLab.xcdatamodeld */; };
 		30D2666A1BF3C1EB00261977 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266671BF3C1EB00261977 /* main.m */; };
 		30D266711BF3C2EB00261977 /* RRRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266701BF3C2EB00261977 /* RRRNavigationController.m */; };
 		30D266751BF3C30F00261977 /* RRRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266731BF3C30F00261977 /* RRRTableViewController.m */; };
 		30D266781BF3C35E00261977 /* RRRTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D266771BF3C35E00261977 /* RRRTableViewController.xib */; };
-		30D2667C1BF3C43D00261977 /* RRRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2667A1BF3C43D00261977 /* RRRTableViewCell.m */; };
-		30D2667D1BF3C43D00261977 /* RRRTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D2667B1BF3C43D00261977 /* RRRTableViewCell.xib */; };
 		30D266801BF3C4BF00261977 /* RRRDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2667F1BF3C4BF00261977 /* RRRDataBaseManager.m */; };
 		30D266821BF3CAAD00261977 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30D266811BF3CAAD00261977 /* Default-568h@2x.png */; };
 		30D266981BF3D8C200261977 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266861BF3D8C200261977 /* AFHTTPRequestOperation.m */; };
@@ -39,6 +39,9 @@
 		30A6CE721BF4A9A30040ACC0 /* RRRSingleCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRSingleCurrency.m; sourceTree = "<group>"; };
 		30A6CE741BF4A9BC0040ACC0 /* RRRSingleOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRSingleOrganization.h; sourceTree = "<group>"; };
 		30A6CE751BF4A9BC0040ACC0 /* RRRSingleOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRSingleOrganization.m; sourceTree = "<group>"; };
+		30D006171BF620D200550E3F /* RRRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRTableViewCell.h; sourceTree = "<group>"; };
+		30D006181BF620D200550E3F /* RRRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRTableViewCell.m; sourceTree = "<group>"; };
+		30D006191BF620D200550E3F /* RRRTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRTableViewCell.xib; sourceTree = "<group>"; };
 		30D266411BF3C0EC00261977 /* ConverterLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConverterLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D266531BF3C0EC00261977 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30D266641BF3C1EB00261977 /* ConverterLab.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConverterLab.xcdatamodel; sourceTree = "<group>"; };
@@ -49,9 +52,6 @@
 		30D266721BF3C30F00261977 /* RRRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRTableViewController.h; sourceTree = "<group>"; };
 		30D266731BF3C30F00261977 /* RRRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRTableViewController.m; sourceTree = "<group>"; };
 		30D266771BF3C35E00261977 /* RRRTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRTableViewController.xib; sourceTree = "<group>"; };
-		30D266791BF3C43D00261977 /* RRRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRTableViewCell.h; sourceTree = "<group>"; };
-		30D2667A1BF3C43D00261977 /* RRRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRTableViewCell.m; sourceTree = "<group>"; };
-		30D2667B1BF3C43D00261977 /* RRRTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRTableViewCell.xib; sourceTree = "<group>"; };
 		30D2667E1BF3C4BF00261977 /* RRRDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRDataBaseManager.h; sourceTree = "<group>"; };
 		30D2667F1BF3C4BF00261977 /* RRRDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRDataBaseManager.m; sourceTree = "<group>"; };
 		30D266811BF3CAAD00261977 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -157,9 +157,9 @@
 			isa = PBXGroup;
 			children = (
 				30D266771BF3C35E00261977 /* RRRTableViewController.xib */,
-				30D266791BF3C43D00261977 /* RRRTableViewCell.h */,
-				30D2667A1BF3C43D00261977 /* RRRTableViewCell.m */,
-				30D2667B1BF3C43D00261977 /* RRRTableViewCell.xib */,
+				30D006171BF620D200550E3F /* RRRTableViewCell.h */,
+				30D006181BF620D200550E3F /* RRRTableViewCell.m */,
+				30D006191BF620D200550E3F /* RRRTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,9 +283,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30D2667D1BF3C43D00261977 /* RRRTableViewCell.xib in Resources */,
 				30D266821BF3CAAD00261977 /* Default-568h@2x.png in Resources */,
 				30D266781BF3C35E00261977 /* RRRTableViewController.xib in Resources */,
+				30D0061B1BF620D200550E3F /* RRRTableViewCell.xib in Resources */,
 				30D266541BF3C0EC00261977 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,12 +298,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				30D2669D1BF3D8C200261977 /* AFURLConnectionOperation.m in Sources */,
-				30D2667C1BF3C43D00261977 /* RRRTableViewCell.m in Sources */,
 				30D266681BF3C1EB00261977 /* ConverterLab.xcdatamodeld in Sources */,
 				30D2666A1BF3C1EB00261977 /* main.m in Sources */,
 				30D2669F1BF3D8C200261977 /* AFURLResponseSerialization.m in Sources */,
 				30A6CE731BF4A9A30040ACC0 /* RRRSingleCurrency.m in Sources */,
 				30D266711BF3C2EB00261977 /* RRRNavigationController.m in Sources */,
+				30D0061A1BF620D200550E3F /* RRRTableViewCell.m in Sources */,
 				30D2669E1BF3D8C200261977 /* AFURLRequestSerialization.m in Sources */,
 				30D2669C1BF3D8C200261977 /* AFSecurityPolicy.m in Sources */,
 				30D266981BF3D8C200261977 /* AFHTTPRequestOperation.m in Sources */,

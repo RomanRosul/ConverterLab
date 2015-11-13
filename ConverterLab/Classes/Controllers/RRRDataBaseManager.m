@@ -42,6 +42,10 @@
 
 -(void)webDataSourceDidUpdated:(NSDictionary *)fetchedData
 {
+#warning date to NSDate + compare
+//  if (self.date isEqual: [fetchedData objectForKey:@"date"]) {
+//    <#statements#>
+//  }
   self.date = [fetchedData objectForKey:@"date"];
   NSArray * rawOrganizations = [fetchedData objectForKey:@"organizations"];
   self.organizationRegions = [fetchedData objectForKey:@"regions"];
@@ -49,14 +53,17 @@
   self.currenciesList = [fetchedData objectForKey:@"currencies"];
   self.organizations = [[NSMutableArray alloc] init];
   
+   //NSLog(@"all =%li",rawOrganizations.count);
+  
   for (NSInteger i = 0; i<rawOrganizations.count; i++) {
+    
     RRRSingleOrganization * singleOrganization = [[RRRSingleOrganization alloc] init];
-    singleOrganization.title = [rawOrganizations[i] objectForKey:@"title"];
-    singleOrganization.phone = [rawOrganizations[i] objectForKey:@"phone"];
-    singleOrganization.link = [rawOrganizations[i] objectForKey:@"link"];
-    singleOrganization.address = [rawOrganizations[i] objectForKey:@"address"];
-    singleOrganization.city = [self.organizationCities objectForKey:[rawOrganizations[i] objectForKey:@"cityId"]];
-    singleOrganization.region = [self.organizationRegions objectForKey:[rawOrganizations[i] objectForKey:@"regionId"]];
+    singleOrganization.title = [self nullCheck:[rawOrganizations[i] objectForKey:@"title"]];
+    singleOrganization.phone = [self nullCheck:[rawOrganizations[i] objectForKey:@"phone"]];
+    singleOrganization.link = [self nullCheck:[rawOrganizations[i] objectForKey:@"link"]];
+    singleOrganization.address = [self nullCheck:[rawOrganizations[i] objectForKey:@"address"]];
+    singleOrganization.city = [self nullCheck:[self.organizationCities objectForKey:[rawOrganizations[i] objectForKey:@"cityId"]]];
+    singleOrganization.region = [self nullCheck:[self.organizationRegions objectForKey:[rawOrganizations[i] objectForKey:@"regionId"]]];
     NSDictionary * rawCurrencies = [rawOrganizations[i] objectForKey:@"currencies"];
     NSArray * currenciesKeys = [rawCurrencies allKeys];
     
@@ -72,20 +79,49 @@
     [self.organizations addObject:singleOrganization];
   }
   NSManagedObjectContext * context = self.managedObjectContext;
-  NSManagedObject * organizationManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Organization" inManagedObjectContext: context];
+  //delete all in db
+  NSFetchRequest *allItems = [[NSFetchRequest alloc] init];
+  [allItems setEntity:[NSEntityDescription entityForName:@"Organization" inManagedObjectContext:context]];
+  [allItems setIncludesPropertyValues:NO];
   
-#warning DB fill here
-  NSInteger i = 0;
-  RRRSingleOrganization * currentOrganization = (RRRSingleOrganization *)self.organizations[i];
-  [organizationManagedObject setValue:currentOrganization.title forKey:@"title"];
-  [organizationManagedObject setValue:currentOrganization.city forKey:@"city"];
-  [organizationManagedObject setValue:currentOrganization.region forKey:@"region"];
-  [organizationManagedObject setValue:currentOrganization.address forKey:@"address"];
-  [organizationManagedObject setValue:currentOrganization.phone forKey:@"phone"];
-  [organizationManagedObject setValue:currentOrganization.link forKey:@"link"];
- // [organizationManagedObject setValue:currentOrganization.currencies forKey:@"currencies"];
-[self saveContext];
+  NSError *error = nil;
+  NSArray *itemList = [context executeFetchRequest:allItems error:&error];
+  
+  for (NSManagedObject *item in itemList) {
+    [context deleteObject:item];
+  }
+  NSError *saveError = nil;
+  [context save:&saveError];
+  
+  
+  
+  
+#warning do it all in one cicle
+  
+  for (NSInteger i=0; i<self.organizations.count; i++) {
+    NSManagedObject * organizationManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Organization" inManagedObjectContext: context];
+    RRRSingleOrganization * currentOrganization = (RRRSingleOrganization *)self.organizations[i];
+    [organizationManagedObject setValue:currentOrganization.title forKey:@"title"];
+    [organizationManagedObject setValue:currentOrganization.city forKey:@"city"];
+    [organizationManagedObject setValue:currentOrganization.region forKey:@"region"];
+    [organizationManagedObject setValue:currentOrganization.address forKey:@"address"];
+    [organizationManagedObject setValue:currentOrganization.phone forKey:@"phone"];
+    [organizationManagedObject setValue:currentOrganization.link forKey:@"link"];
+    [organizationManagedObject setValue:[NSNumber numberWithInteger:i] forKey:@"id"];
+    NSData *currenciesData = [NSKeyedArchiver archivedDataWithRootObject:currentOrganization.currencies];
+    [organizationManagedObject setValue:currenciesData forKey:@"currencies"];
+    [self saveContext];
+  }
+  NSLog(@"data base updated from web, %@",self.date);
 }
+
+- (NSString *)nullCheck:(NSString *) aString{
+  if (aString == (id)[NSNull null] || aString.length == 0) {
+    aString = @"*";
+  }
+  return (NSString *)aString;
+}
+
 
 - (NSURL *)applicationDocumentsDirectory {
   // The directory the application uses to store the Core Data store file. This code uses a directory named "iOS-courses-FinalTask.ConverterLab" in the application's documents directory.
