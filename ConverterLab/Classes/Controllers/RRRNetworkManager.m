@@ -48,7 +48,13 @@
     parameters:nil
        success:^(NSURLSessionDataTask *task, id responseObject) {
          NSDictionary * responseDictionary  = (NSMutableDictionary *)responseObject;
-         [self.delegateInstance webDataSourceDidUpdated:responseDictionary];
+         
+         SEL selector = @selector(webDataSourceDidUpdated:);
+         if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+         {
+           [self.delegateInstance performSelector:selector withObject:responseDictionary];
+         }
+        // [self.delegateInstance webDataSourceDidUpdated:responseDictionary];
        }
        failure:^(NSURLSessionDataTask *task, NSError *error) {
          NSLog(@"JSON Error");

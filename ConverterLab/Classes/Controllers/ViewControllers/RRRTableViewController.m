@@ -7,7 +7,7 @@
 //
 
 #import "RRRTableViewController.h"
-#import "RRRTableViewCell.h"
+
 //#import "RRRNetworkManager.h"
 
 @interface RRRTableViewController ()
@@ -33,20 +33,51 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];
   [self addSearchBar];
 }
-#pragma mark - Search Bar delegate
+
 -(void)addSearchBar
 {
-    self.searchBar = [[UISearchBar alloc] init];
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    self.searchController.searchBar.delegate = self;
-    self.searchController.dimsBackgroundDuringPresentation = NO;  
-    self.searchController.searchBar.tintColor = [UIColor whiteColor];
+  self.searchBar = [[UISearchBar alloc] init];
+  self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+  self.searchController.searchBar.delegate = self;
+  self.searchController.dimsBackgroundDuringPresentation = NO;
+  self.searchController.searchBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)navBarSearchButtonPressed{
   self.tableView.tableHeaderView = self.searchController.searchBar;
   self.searchController.active = YES;
 }
+
+#pragma mark - Table Cell Buttons delegate
+
+- (void)buttonURLPressed:(NSNumber *)tableRow {
+  NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
+  NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
+  NSURL *url = [NSURL URLWithString:[managedObject valueForKey:@"link"]];
+  [[UIApplication sharedApplication] openURL:url];
+}
+
+- (void)buttonMapPressed:(NSNumber *)tableRow {
+  NSLog(@"map row %@",tableRow);
+}
+
+- (void)buttonCallPressed:(NSNumber *)tableRow {
+  NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
+  NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
+    
+  NSString *cleanedString = [[[managedObject valueForKey:@"phone"] componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
+  NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:+38%@", cleanedString]];
+#warning uncomment to make a call
+ // [[UIApplication sharedApplication] openURL:telURL];
+   NSLog(@"calling to %@",telURL);
+}
+
+- (void)buttonDetailedInfoPressed:(NSNumber *)tableRow {
+  NSLog(@"details row %@",tableRow);
+}
+
+
+#pragma mark - Search Bar delegate
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
   self.tableView.tableHeaderView = nil;
@@ -124,7 +155,7 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
     [searchItemsPredicate addObject:finalPredicate];
     
     finalPredicate = [NSPredicate predicateWithFormat:@"city LIKE[c] %@", [NSString stringWithFormat:@"*%@*",searchString]];
-    [searchItemsPredicate addObject:finalPredicate];    
+    [searchItemsPredicate addObject:finalPredicate];
     
     NSCompoundPredicate *orMatchPredicates = [NSCompoundPredicate orPredicateWithSubpredicates:searchItemsPredicate];
     [andMatchPredicates addObject:orMatchPredicates];
@@ -150,8 +181,6 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   return [sectionInfo numberOfObjects];}
 
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RRRTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RRRCellIdentifier forIndexPath:indexPath];
     
@@ -170,11 +199,13 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   cell.cityLabel.text = [managedObject valueForKey:@"city"];
   cell.phoneLabel.text = [NSString stringWithFormat:@"Тел: %@",[managedObject valueForKey:@"phone"]];
   cell.addressLabel.text = [NSString stringWithFormat:@"Адрес: %@",[managedObject valueForKey:@"address"]];
+  cell.delegateInstance = self;
+  cell.linkButton.tag = indexPath.row;
+  cell.mapButton.tag = indexPath.row;
+  cell.callButton.tag = indexPath.row;
+  cell.detailsButton.tag = indexPath.row;
 
 }
-
-
-
 
 
 #pragma mark - Table view delegate

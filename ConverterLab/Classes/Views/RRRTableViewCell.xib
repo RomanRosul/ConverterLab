@@ -23,18 +23,30 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Szq-FY-Ydj">
                                         <rect key="frame" x="26" y="4" width="26" height="22"/>
                                         <state key="normal" image="ic_link_unactive"/>
+                                        <connections>
+                                            <action selector="openURLPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BBU-6y-fr0"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGz-Cb-Gtx">
                                         <rect key="frame" x="108" y="4" width="16" height="22"/>
                                         <state key="normal" image="ic_mark_unactive"/>
+                                        <connections>
+                                            <action selector="openMapPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0gw-NI-nWH"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPi-Xh-dZ2">
                                         <rect key="frame" x="183" y="4" width="20" height="22"/>
                                         <state key="normal" image="ic_phone_unactive"/>
+                                        <connections>
+                                            <action selector="callPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gNE-Ov-zjp"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIB-Wo-gFO">
                                         <rect key="frame" x="258" y="4" width="28" height="22"/>
                                         <state key="normal" image="ic_dots_unactive"/>
+                                        <connections>
+                                            <action selector="detailedInfoPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4KB-xK-Xd9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

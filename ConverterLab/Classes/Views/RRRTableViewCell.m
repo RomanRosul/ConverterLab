@@ -21,4 +21,36 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)openURLPressed:(id)sender {
+  SEL selector = @selector(buttonURLPressed:);
+  if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+  {
+    [self.delegateInstance performSelector:selector withObject:[NSNumber numberWithInteger:[sender tag]]];
+  }
+}
+
+- (IBAction)openMapPressed:(id)sender {
+  SEL selector = @selector(buttonMapPressed:);
+  if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+  {
+    [self.delegateInstance performSelector:selector withObject:[NSNumber numberWithInteger:[sender tag]]];
+  }
+}
+
+- (IBAction)callPressed:(id)sender {
+  SEL selector = @selector(buttonCallPressed:);
+  if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+  {
+    [self.delegateInstance performSelector:selector withObject:[NSNumber numberWithInteger:[sender tag]]];
+  }
+}
+- (IBAction)detailedInfoPressed:(id)sender {
+  SEL selector = @selector(buttonDetailedInfoPressed:);
+  if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+  {
+    [self.delegateInstance performSelector:selector withObject:[NSNumber numberWithInteger:[sender tag]]];
+  }
+  
+}
+
 @end

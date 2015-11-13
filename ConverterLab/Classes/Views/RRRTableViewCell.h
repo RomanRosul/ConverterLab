@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TableCellButtonsDelegate <NSObject>
+@required
+- (void)buttonURLPressed:(NSNumber *)tableRow;
+- (void)buttonMapPressed:(NSNumber *)tableRow;
+- (void)buttonCallPressed:(NSNumber *)tableRow;
+- (void)buttonDetailedInfoPressed:(NSNumber *)tableRow;
+@end
+
 @interface RRRTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *linkButton;
 @property (weak, nonatomic) IBOutlet UIButton *mapButton;
@@ -18,5 +26,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (nonatomic, weak) id <TableCellButtonsDelegate> delegateInstance;
 
 @end
