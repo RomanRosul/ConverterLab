@@ -59,6 +59,29 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 
 - (void)buttonMapPressed:(NSNumber *)tableRow {
   NSLog(@"map row %@",tableRow);
+  NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
+  NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
+  NSString * fullAddressString = [NSString stringWithFormat:@"Ukraine, %@, %@, %@",[managedObject valueForKey:@"region"],[managedObject valueForKey:@"city"],[managedObject valueForKey:@"address"]];
+  // NSLog(@"map row %@",fullAddressString);
+  CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+  [geocoder geocodeAddressString:fullAddressString completionHandler:^(NSArray *placemarks, NSError *error) {
+    if (error != nil)
+    {
+     // NSLog(@"Geocode failed with error: %@", error);
+      [self displayError:error];
+      return;
+    }
+    CLPlacemark *placemark = (CLPlacemark *)placemarks[0];
+    RRRMapViewController * locationViewController = [RRRMapViewController new];
+    locationViewController.location = placemark.location; //(__bridge CLLocationCoordinate2D *)(placemark.location);
+    [self.navigationController pushViewController:locationViewController animated:YES];
+//    NSString *ll = [NSString stringWithFormat:@"%f,%f",
+//                    placemark.location.coordinate.latitude,
+//                    placemark.location.coordinate.longitude];
+//    ll = [ll stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet];
+//    NSString *url = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@", ll];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+  }];
 }
 
 - (void)buttonCallPressed:(NSNumber *)tableRow {
@@ -227,6 +250,28 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
   [self.tableView reloadData];
 }
+
+#pragma mark - other
+
+- (void)displayError:(NSError *)error
+{
+  dispatch_async(dispatch_get_main_queue(),^ {
+       NSString * message = error.description;
+    
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:@"An error occurred."
+                                        message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok =
+    [UIAlertAction actionWithTitle:@"OK"style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) {
+                             
+                           }];
+    [alertController addAction:ok];
+    [self presentViewController:alertController animated:YES completion:nil];
+  });
+}
+
 
 
 
