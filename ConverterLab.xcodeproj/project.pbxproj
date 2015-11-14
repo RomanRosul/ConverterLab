@@ -10,9 +10,11 @@
 		30A6CE701BF4A9730040ACC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE6F1BF4A9730040ACC0 /* AppDelegate.m */; };
 		30A6CE731BF4A9A30040ACC0 /* RRRSingleCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE721BF4A9A30040ACC0 /* RRRSingleCurrency.m */; };
 		30A6CE761BF4A9BC0040ACC0 /* RRRSingleOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE751BF4A9BC0040ACC0 /* RRRSingleOrganization.m */; };
+		30A9CB081BF7450C00D3A3E0 /* RRRMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A9CB061BF7450C00D3A3E0 /* RRRMapViewController.xib */; };
+		30A9CB0C1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A9CB0A1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m */; };
+		30A9CB0D1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A9CB0B1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib */; };
 		30AAFB091BF699B3006B546E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AAFB081BF699B3006B546E /* MapKit.framework */; };
 		30AAFB0D1BF6A479006B546E /* RRRMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AAFB0B1BF6A479006B546E /* RRRMapViewController.m */; };
-		30AAFB0E1BF6A479006B546E /* RRRMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30AAFB0C1BF6A479006B546E /* RRRMapViewController.xib */; };
 		30AAFB111BF6ABE6006B546E /* RRRAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AAFB101BF6ABE6006B546E /* RRRAnnotation.m */; };
 		30D0061A1BF620D200550E3F /* RRRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D006181BF620D200550E3F /* RRRTableViewCell.m */; };
 		30D0061B1BF620D200550E3F /* RRRTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D006191BF620D200550E3F /* RRRTableViewCell.xib */; };
@@ -43,10 +45,13 @@
 		30A6CE721BF4A9A30040ACC0 /* RRRSingleCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRSingleCurrency.m; sourceTree = "<group>"; };
 		30A6CE741BF4A9BC0040ACC0 /* RRRSingleOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRSingleOrganization.h; sourceTree = "<group>"; };
 		30A6CE751BF4A9BC0040ACC0 /* RRRSingleOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRSingleOrganization.m; sourceTree = "<group>"; };
+		30A9CB061BF7450C00D3A3E0 /* RRRMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRMapViewController.xib; sourceTree = "<group>"; };
+		30A9CB091BF74BF800D3A3E0 /* RRRDetailedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRDetailedTableViewController.h; sourceTree = "<group>"; };
+		30A9CB0A1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRDetailedTableViewController.m; sourceTree = "<group>"; };
+		30A9CB0B1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRDetailedTableViewController.xib; sourceTree = "<group>"; };
 		30AAFB081BF699B3006B546E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		30AAFB0A1BF6A479006B546E /* RRRMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRMapViewController.h; sourceTree = "<group>"; };
 		30AAFB0B1BF6A479006B546E /* RRRMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRMapViewController.m; sourceTree = "<group>"; };
-		30AAFB0C1BF6A479006B546E /* RRRMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRMapViewController.xib; sourceTree = "<group>"; };
 		30AAFB0F1BF6ABE6006B546E /* RRRAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRAnnotation.h; sourceTree = "<group>"; };
 		30AAFB101BF6ABE6006B546E /* RRRAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRAnnotation.m; sourceTree = "<group>"; };
 		30D006171BF620D200550E3F /* RRRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRTableViewCell.h; sourceTree = "<group>"; };
@@ -170,6 +175,7 @@
 		30D266611BF3C1EB00261977 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				30A9CB061BF7450C00D3A3E0 /* RRRMapViewController.xib */,
 				30D266771BF3C35E00261977 /* RRRTableViewController.xib */,
 				30D006171BF620D200550E3F /* RRRTableViewCell.h */,
 				30D006181BF620D200550E3F /* RRRTableViewCell.m */,
@@ -204,7 +210,9 @@
 				30D266731BF3C30F00261977 /* RRRTableViewController.m */,
 				30AAFB0A1BF6A479006B546E /* RRRMapViewController.h */,
 				30AAFB0B1BF6A479006B546E /* RRRMapViewController.m */,
-				30AAFB0C1BF6A479006B546E /* RRRMapViewController.xib */,
+				30A9CB091BF74BF800D3A3E0 /* RRRDetailedTableViewController.h */,
+				30A9CB0A1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m */,
+				30A9CB0B1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -302,8 +310,9 @@
 			files = (
 				30D266821BF3CAAD00261977 /* Default-568h@2x.png in Resources */,
 				30D266781BF3C35E00261977 /* RRRTableViewController.xib in Resources */,
-				30AAFB0E1BF6A479006B546E /* RRRMapViewController.xib in Resources */,
+				30A9CB081BF7450C00D3A3E0 /* RRRMapViewController.xib in Resources */,
 				30D0061B1BF620D200550E3F /* RRRTableViewCell.xib in Resources */,
+				30A9CB0D1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib in Resources */,
 				30D266541BF3C0EC00261977 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +332,7 @@
 				30A6CE731BF4A9A30040ACC0 /* RRRSingleCurrency.m in Sources */,
 				30D266711BF3C2EB00261977 /* RRRNavigationController.m in Sources */,
 				30D0061A1BF620D200550E3F /* RRRTableViewCell.m in Sources */,
+				30A9CB0C1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m in Sources */,
 				30D2669E1BF3D8C200261977 /* AFURLRequestSerialization.m in Sources */,
 				30D2669C1BF3D8C200261977 /* AFSecurityPolicy.m in Sources */,
 				30D266981BF3D8C200261977 /* AFHTTPRequestOperation.m in Sources */,

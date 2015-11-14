@@ -11,6 +11,7 @@
 //#import "RRRNetworkManager.h"
 
 @interface RRRTableViewController ()
+@property (nonatomic)  UIView * overlayView;
 
 @end
 
@@ -30,6 +31,8 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   UIBarButtonItem *navBarSearchButton = [[UIBarButtonItem alloc] initWithImage:navBarSearchImage style:UIBarButtonItemStylePlain target:self action:@selector(navBarSearchButtonPressed)];
   self.navigationItem.rightBarButtonItem = navBarSearchButton;
   self.dataFetchedResultsController.delegate = self;
+  [RRRDataBaseManager sharedDBManager].delegateInstance = self;
+  [self lockUI];
   [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];
   [self addSearchBar];
 }
@@ -58,7 +61,7 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 }
 
 - (void)buttonMapPressed:(NSNumber *)tableRow {
-  NSLog(@"map row %@",tableRow);
+ // NSLog(@"map row %@",tableRow);
   NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
   NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
   NSString * fullAddressString = [NSString stringWithFormat:@"Ukraine, %@, %@, %@",[managedObject valueForKey:@"region"],[managedObject valueForKey:@"city"],[managedObject valueForKey:@"address"]];
@@ -96,12 +99,14 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 }
 
 - (void)buttonDetailedInfoPressed:(NSNumber *)tableRow {
-  NSLog(@"details row %@",tableRow);
+ // NSLog(@"details row %@",tableRow);
+  RRRDetailedTableViewController * detailedTableViewController = [RRRDetailedTableViewController new];
+  [self.navigationController pushViewController:detailedTableViewController animated:YES];
 }
 
 
 #pragma mark - Search Bar delegate
-
+#warning optimize search
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
   self.tableView.tableHeaderView = nil;
   self.searchController.searchBar.text = nil;
@@ -233,26 +238,25 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 
 #pragma mark - Table view delegate
 
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-     // Navigation logic may go here, for example:
-    // Create the next view controller.
-     //*detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];<#DetailViewController#>
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-   // [self.navigationController pushViewController:detailViewController animated:YES];
+     
 }
 
 #pragma mark - FetchedResultsControllerdelegate
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
   [self.tableView reloadData];
+  [self unlockUI];
+}
+
+#pragma mark - Data Base Manager delegate
+
+- (void)dataBaseNotUpdated {
+  [self unlockUI];
 }
 
 #pragma mark - other
-
+#warning catch error code
 - (void)displayError:(NSError *)error
 {
   dispatch_async(dispatch_get_main_queue(),^ {
@@ -272,6 +276,25 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   });
 }
 
+
+- (void) lockUI {
+  self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+  UILabel * statusLabel =[[UILabel alloc] initWithFrame:CGRectMake(0,[UIScreen mainScreen].bounds.size.height-20, [UIScreen mainScreen].bounds.size.width, 20)];
+  statusLabel.backgroundColor = [UIColor colorWithRed:0.6 green:0 blue:0 alpha:0.8];
+statusLabel.text = @"Updating...";
+  //UIView * statusView = [[UIView alloc] initWithFrame:CGRectMake(0,[UIScreen mainScreen].bounds.size.height-20, [UIScreen mainScreen].bounds.size.width, 20)];
+  //statusView.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.8];
+  [self.overlayView addSubview:statusLabel];
+  [self.navigationController.view addSubview:self.overlayView];
+}
+
+-(void) unlockUI {
+  
+    if (self.overlayView) {
+      [self.overlayView removeFromSuperview];
+    }
+}
 
 
 

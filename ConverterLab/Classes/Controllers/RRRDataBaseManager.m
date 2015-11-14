@@ -42,7 +42,7 @@
 
 -(void)webDataSourceDidUpdated:(NSDictionary *)fetchedData
 {
-#warning date to NSDate + compare
+//#warning date to NSDate + compare
 //  if (self.date isEqual: [fetchedData objectForKey:@"date"]) {
 //    <#statements#>
 //  }
@@ -120,6 +120,14 @@
     aString = @"*";
   }
   return (NSString *)aString;
+}
+
+- (void)webDataSourceNotUpdated {
+  SEL selector = @selector(dataBaseNotUpdated);
+  if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+  {
+    [self.delegateInstance performSelector:selector];
+  }
 }
 
 

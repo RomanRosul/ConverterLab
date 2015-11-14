@@ -57,7 +57,12 @@
         // [self.delegateInstance webDataSourceDidUpdated:responseDictionary];
        }
        failure:^(NSURLSessionDataTask *task, NSError *error) {
-         NSLog(@"JSON Error");
+         
+         SEL selector = @selector(webDataSourceNotUpdated);
+         if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+         {
+           [self.delegateInstance performSelector:selector];
+         }         
        }];
  }
 

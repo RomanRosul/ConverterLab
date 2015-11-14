@@ -11,6 +11,8 @@
 @protocol FetchedWebDataDelegate <NSObject>
 @required
 - (void)webDataSourceDidUpdated:(NSDictionary *)fetchedData;
+@optional
+- (void)webDataSourceNotUpdated;
 @end
 
 
