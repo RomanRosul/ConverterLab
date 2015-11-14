@@ -13,6 +13,7 @@
 #import "RRRTableViewCell.h"
 #import "RRRMapViewController.h"
 #import "RRRDetailedTableViewController.h"
+#import "RRRSingleOrganization.h"
 
 @interface RRRTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, TableCellButtonsDelegate, DataBaseManagerDelegate>//, //UISearchControllerDelegate, UISearchResultsUpdating>
 

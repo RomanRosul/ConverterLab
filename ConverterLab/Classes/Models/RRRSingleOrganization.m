@@ -16,7 +16,28 @@
   if (self)
   {
     self.currencies = [[NSMutableArray alloc] init];
-    
+  }
+  return self;
+}
+
+-(instancetype)initWithTitle:(NSString *)aTitle
+                  withRegion:(NSString *)aRegion
+                    withCity:(NSString *)aCity
+                 withAddress:(NSString *)aAddress
+                   withPhone:(NSString *)aPhone
+                    withLink:(NSString *)aLink
+              withCurrencies:(NSMutableArray *)aCurrencies
+{
+  self = [super init];
+  if (self)
+  {
+    self.title = aTitle;
+    self.region = aRegion;
+    self.city = aCity;
+    self.address = aAddress;
+    self.phone = aPhone;
+    self.link = aLink;
+    self.currencies = aCurrencies;
   }
   return self;
 }

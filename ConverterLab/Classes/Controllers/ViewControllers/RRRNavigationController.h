@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RRRHamburgerButtonView.h"
+#import "RRRTableViewController.h"
 
 @interface RRRNavigationController : UINavigationController
 
+@property (nonatomic,strong) RRRHamburgerButtonView * hamburgerButton;
 @end

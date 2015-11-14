@@ -7,6 +7,7 @@
 //
 
 #import "RRRDetailedTableViewController.h"
+#import "RRRNavigationController.h"
 
 @interface RRRDetailedTableViewController ()
 
@@ -17,99 +18,155 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   self.tableView.backgroundColor = [UIColor yellowColor];
-  self.title = @"BANK";
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  
+  UIView * detailedTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
+  UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+  UILabel * subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 200, 20)];
+  titleLabel.backgroundColor = [UIColor redColor];
+  subtitleLabel.backgroundColor = [UIColor greenColor];
+  titleLabel.text = self.singleOrganization.title;       //@"title";
+  subtitleLabel.text = self.singleOrganization.city;
+  [detailedTitleView addSubview:titleLabel];
+  [detailedTitleView addSubview:subtitleLabel];
+  self.navigationItem.titleView = detailedTitleView;
+  
+  UIImage* navBarShareImage = [UIImage imageNamed:@"ic_share"];
+  UIBarButtonItem *navBarShareButton = [[UIBarButtonItem alloc] initWithImage:navBarShareImage style:UIBarButtonItemStylePlain target:self action:@selector(navBarShareButtonPressed)];
+  self.navigationItem.rightBarButtonItem = navBarShareButton;  
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) viewWillAppear:(BOOL)animated {
+  RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
+  navController.hamburgerButton = [[RRRHamburgerButtonView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen]bounds].size.width-65, [[UIScreen mainScreen]bounds].size.height-68, 55, 55)];
+  [navController.view addSubview: navController.hamburgerButton];
+  navController.hamburgerButton.delegateInstance = self;
+  
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+  return self.singleOrganization.currencies.count+2;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+  switch (indexPath.row)
+  {
+    case 0: return [self cellForDetailedInfo];
+    case 1: return [self cellForCurrencyesHeader];
+    default: return [self cellForCurrenciesList:indexPath.row];
+  }
+    return nil;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (UITableViewCell *)blankCell
+{
+  NSString *cellID = @"Cell";
+  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  return cell;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (UITableViewCell *)cellForDetailedInfo
+{
+  NSString *cellID = @"Cell";
+  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
+   cell.textLabel.text = self.singleOrganization.title;
+  return cell;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (UITableViewCell *)cellForCurrencyesHeader
+{
+  NSString *cellID = @"Cell";
+  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  cell.textLabel.text = @"buy/sell";
+  return cell;
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (UITableViewCell *)cellForCurrenciesList:(NSInteger)index {
+  NSString *cellID = @"Cell";
+  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  RRRSingleCurrency * currency =self.singleOrganization.currencies[index-2];
+  cell.textLabel.text = [currency.ask description];
+  cell.detailTextLabel.text = [currency.bid description];
+  return cell;
 }
-*/
 
-/*
-#pragma mark - Table view delegate
+#pragma mark - Hamburger button delegate
 
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+- (void) hamburgerDidPressed {
+  
+  RRRHamburgerOverlayView * overlayView = [[ RRRHamburgerOverlayView alloc] init];
+  overlayView.delegateInstance = self;
+  [self.navigationController.view addSubview:overlayView];
 }
-*/
 
-/*
-#pragma mark - Navigation
+#pragma mark - Table Cell Buttons delegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)buttonURLPressed:(NSNumber *)tableRow {
+ // NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
+ // NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
+  NSURL *url = [NSURL URLWithString:self.singleOrganization.link];
+  [[UIApplication sharedApplication] openURL:url];
 }
-*/
+
+- (void)buttonMapPressed:(NSNumber *)tableRow {
+  
+  RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
+  if (navController.hamburgerButton) {
+    [navController.hamburgerButton removeFromSuperview];
+  }
+  // NSLog(@"map row %@",tableRow);
+ // NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
+ // NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
+  NSString * fullAddressString = [NSString stringWithFormat:@"Ukraine, %@, %@, %@",self.singleOrganization.region,self.singleOrganization.city,self.singleOrganization.address];
+  // NSLog(@"map row %@",fullAddressString);
+  CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+  [geocoder geocodeAddressString:fullAddressString completionHandler:^(NSArray *placemarks, NSError *error) {
+    if (error != nil)
+    {
+       NSLog(@"Geocode failed with error: %@", error);
+     // [self displayError:error];
+      return;
+    }
+    CLPlacemark *placemark = (CLPlacemark *)placemarks[0];
+    RRRMapViewController * locationViewController = [RRRMapViewController new];
+    locationViewController.location = placemark.location; //(__bridge CLLocationCoordinate2D *)(placemark.location);
+    [self.navigationController pushViewController:locationViewController animated:YES];
+    //    NSString *ll = [NSString stringWithFormat:@"%f,%f",
+    //                    placemark.location.coordinate.latitude,
+    //                    placemark.location.coordinate.longitude];
+    //    ll = [ll stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet];
+    //    NSString *url = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@", ll];
+    //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+  }];
+}
+
+- (void)buttonCallPressed:(NSNumber *)tableRow {
+  //NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
+ // NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
+  
+  NSString *cleanedString = [[self.singleOrganization.phone componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
+  NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:+38%@", cleanedString]];
+#warning uncomment to make a call
+  // [[UIApplication sharedApplication] openURL:telURL];
+  NSLog(@"calling to %@",telURL);
+}
+
+#pragma mark - other
+
+- (void)navBarShareButtonPressed {
+  NSLog(@"share");
+}
+
+
 
 @end

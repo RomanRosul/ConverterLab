@@ -7,6 +7,7 @@
 //
 
 #import "RRRTableViewController.h"
+#import "RRRNavigationController.h"
 
 //#import "RRRNetworkManager.h"
 
@@ -30,11 +31,25 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   UIImage* navBarSearchImage = [UIImage imageNamed:@"ic_search"];
   UIBarButtonItem *navBarSearchButton = [[UIBarButtonItem alloc] initWithImage:navBarSearchImage style:UIBarButtonItemStylePlain target:self action:@selector(navBarSearchButtonPressed)];
   self.navigationItem.rightBarButtonItem = navBarSearchButton;
+  
   self.dataFetchedResultsController.delegate = self;
   [RRRDataBaseManager sharedDBManager].delegateInstance = self;
   [self lockUI];
   [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];
   [self addSearchBar];
+  
+  self.navigationItem.backBarButtonItem =
+  [[UIBarButtonItem alloc] initWithTitle:@""
+                                   style:UIBarButtonItemStylePlain
+                                  target:nil
+                                  action:nil];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+  RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
+  if (navController.hamburgerButton) {
+  [navController.hamburgerButton removeFromSuperview];
+  }  
 }
 
 -(void)addSearchBar
@@ -99,8 +114,20 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 }
 
 - (void)buttonDetailedInfoPressed:(NSNumber *)tableRow {
- // NSLog(@"details row %@",tableRow);
+  NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
+  NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
+  
+   RRRSingleOrganization * singleOrganization = [[RRRSingleOrganization alloc]
+    initWithTitle:[managedObject valueForKey:@"title"]
+    withRegion:[managedObject valueForKey:@"region"]
+    withCity:[managedObject valueForKey:@"city"]
+    withAddress:[managedObject valueForKey:@"address"]
+    withPhone:[managedObject valueForKey:@"phone"]
+    withLink:[managedObject valueForKey:@"link"]
+    withCurrencies:[NSKeyedUnarchiver unarchiveObjectWithData:[managedObject valueForKey:@"currencies"]]];
+ 
   RRRDetailedTableViewController * detailedTableViewController = [RRRDetailedTableViewController new];
+  detailedTableViewController.singleOrganization = singleOrganization;
   [self.navigationController pushViewController:detailedTableViewController animated:YES];
 }
 
@@ -232,6 +259,7 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   cell.mapButton.tag = indexPath.row;
   cell.callButton.tag = indexPath.row;
   cell.detailsButton.tag = indexPath.row;
+  [cell.borderBottom removeFromSuperlayer];
 
 }
 

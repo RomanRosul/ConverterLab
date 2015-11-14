@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30908CF01BF79E8900D72889 /* RRRHamburgerButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30908CEF1BF79E8900D72889 /* RRRHamburgerButtonView.m */; };
+		30908CF31BF7AF8F00D72889 /* RRRHamburgerOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30908CF21BF7AF8F00D72889 /* RRRHamburgerOverlayView.m */; };
+		30908CF51BF7B20300D72889 /* RRRHamburgerOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30908CF41BF7B20300D72889 /* RRRHamburgerOverlayView.xib */; };
 		30A6CE701BF4A9730040ACC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE6F1BF4A9730040ACC0 /* AppDelegate.m */; };
 		30A6CE731BF4A9A30040ACC0 /* RRRSingleCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE721BF4A9A30040ACC0 /* RRRSingleCurrency.m */; };
 		30A6CE761BF4A9BC0040ACC0 /* RRRSingleOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE751BF4A9BC0040ACC0 /* RRRSingleOrganization.m */; };
@@ -39,6 +42,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30908CEE1BF79E8900D72889 /* RRRHamburgerButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRHamburgerButtonView.h; sourceTree = "<group>"; };
+		30908CEF1BF79E8900D72889 /* RRRHamburgerButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRHamburgerButtonView.m; sourceTree = "<group>"; };
+		30908CF11BF7AF8F00D72889 /* RRRHamburgerOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRHamburgerOverlayView.h; sourceTree = "<group>"; };
+		30908CF21BF7AF8F00D72889 /* RRRHamburgerOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRHamburgerOverlayView.m; sourceTree = "<group>"; };
+		30908CF41BF7B20300D72889 /* RRRHamburgerOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRHamburgerOverlayView.xib; sourceTree = "<group>"; };
 		30A6CE6E1BF4A9730040ACC0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		30A6CE6F1BF4A9730040ACC0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		30A6CE711BF4A9A30040ACC0 /* RRRSingleCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRSingleCurrency.h; sourceTree = "<group>"; };
@@ -180,6 +188,11 @@
 				30D006171BF620D200550E3F /* RRRTableViewCell.h */,
 				30D006181BF620D200550E3F /* RRRTableViewCell.m */,
 				30D006191BF620D200550E3F /* RRRTableViewCell.xib */,
+				30908CEE1BF79E8900D72889 /* RRRHamburgerButtonView.h */,
+				30908CEF1BF79E8900D72889 /* RRRHamburgerButtonView.m */,
+				30908CF11BF7AF8F00D72889 /* RRRHamburgerOverlayView.h */,
+				30908CF21BF7AF8F00D72889 /* RRRHamburgerOverlayView.m */,
+				30908CF41BF7B20300D72889 /* RRRHamburgerOverlayView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -308,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30908CF51BF7B20300D72889 /* RRRHamburgerOverlayView.xib in Resources */,
 				30D266821BF3CAAD00261977 /* Default-568h@2x.png in Resources */,
 				30D266781BF3C35E00261977 /* RRRTableViewController.xib in Resources */,
 				30A9CB081BF7450C00D3A3E0 /* RRRMapViewController.xib in Resources */,
@@ -328,6 +342,7 @@
 				30D2669D1BF3D8C200261977 /* AFURLConnectionOperation.m in Sources */,
 				30D266681BF3C1EB00261977 /* ConverterLab.xcdatamodeld in Sources */,
 				30D2666A1BF3C1EB00261977 /* main.m in Sources */,
+				30908CF31BF7AF8F00D72889 /* RRRHamburgerOverlayView.m in Sources */,
 				30D2669F1BF3D8C200261977 /* AFURLResponseSerialization.m in Sources */,
 				30A6CE731BF4A9A30040ACC0 /* RRRSingleCurrency.m in Sources */,
 				30D266711BF3C2EB00261977 /* RRRNavigationController.m in Sources */,
@@ -336,6 +351,7 @@
 				30D2669E1BF3D8C200261977 /* AFURLRequestSerialization.m in Sources */,
 				30D2669C1BF3D8C200261977 /* AFSecurityPolicy.m in Sources */,
 				30D266981BF3D8C200261977 /* AFHTTPRequestOperation.m in Sources */,
+				30908CF01BF79E8900D72889 /* RRRHamburgerButtonView.m in Sources */,
 				30D266A01BF3D8C200261977 /* AFURLSessionManager.m in Sources */,
 				30D266751BF3C30F00261977 /* RRRTableViewController.m in Sources */,
 				30D2669A1BF3D8C200261977 /* AFHTTPSessionManager.m in Sources */,

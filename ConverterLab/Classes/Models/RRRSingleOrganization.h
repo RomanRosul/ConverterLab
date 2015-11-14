@@ -12,15 +12,19 @@
 @interface RRRSingleOrganization : NSObject
 
 @property (strong,nonatomic) NSString * title;
-//@property (strong,nonatomic) NSString * type;
 @property (strong,nonatomic) NSString * region;
 @property (strong,nonatomic) NSString * city;
 @property (strong,nonatomic) NSString * address;
 @property (strong,nonatomic) NSString * phone;
-//@property (strong,nonatomic) NSString * email;
 @property (strong,nonatomic) NSString * link;
-@property (strong,nonatomic) NSString * coord;
-//@property (strong,nonatomic) NSString * detailedInfo;
 @property (strong,nonatomic) NSMutableArray * currencies;
+
+-(instancetype)initWithTitle:(NSString *)aTitle
+                  withRegion:(NSString *)aRegion
+                    withCity:(NSString *)aCity
+                 withAddress:(NSString *)aAddress
+                   withPhone:(NSString *)aPhone
+                    withLink:(NSString *)aLink
+              withCurrencies:(NSMutableArray *)aCurrencies;
 
 @end

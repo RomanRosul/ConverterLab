@@ -13,6 +13,7 @@
 - (void)buttonURLPressed:(NSNumber *)tableRow;
 - (void)buttonMapPressed:(NSNumber *)tableRow;
 - (void)buttonCallPressed:(NSNumber *)tableRow;
+@optional
 - (void)buttonDetailedInfoPressed:(NSNumber *)tableRow;
 @end
 
@@ -27,5 +28,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (nonatomic, weak) id <TableCellButtonsDelegate> delegateInstance;
+@property (nonatomic, strong) CALayer *borderBottom;
 
 @end

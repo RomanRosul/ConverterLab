@@ -21,30 +21,34 @@
                                 <rect key="frame" x="0.0" y="120" width="310" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Szq-FY-Ydj">
-                                        <rect key="frame" x="26" y="4" width="26" height="22"/>
+                                        <rect key="frame" x="0.0" y="4" width="70" height="22"/>
                                         <state key="normal" image="ic_link_unactive"/>
                                         <connections>
+                                            <action selector="linkButtonTouch:" destination="KGk-i7-Jjw" eventType="touchDown" id="9ks-z2-VOw"/>
                                             <action selector="openURLPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BBU-6y-fr0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGz-Cb-Gtx">
-                                        <rect key="frame" x="108" y="4" width="16" height="22"/>
+                                        <rect key="frame" x="78" y="4" width="70" height="22"/>
                                         <state key="normal" image="ic_mark_unactive"/>
                                         <connections>
+                                            <action selector="mapButtonTouch:" destination="KGk-i7-Jjw" eventType="touchDown" id="wb4-DG-EpV"/>
                                             <action selector="openMapPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0gw-NI-nWH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPi-Xh-dZ2">
-                                        <rect key="frame" x="183" y="4" width="20" height="22"/>
+                                        <rect key="frame" x="156" y="4" width="70" height="22"/>
                                         <state key="normal" image="ic_phone_unactive"/>
                                         <connections>
+                                            <action selector="callButtonTouch:" destination="KGk-i7-Jjw" eventType="touchDown" id="W8S-tO-bVB"/>
                                             <action selector="callPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gNE-Ov-zjp"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIB-Wo-gFO">
-                                        <rect key="frame" x="258" y="4" width="28" height="22"/>
+                                        <rect key="frame" x="240" y="4" width="70" height="22"/>
                                         <state key="normal" image="ic_dots_unactive"/>
                                         <connections>
+                                            <action selector="detailedButtonTouch:" destination="KGk-i7-Jjw" eventType="touchDown" id="sgs-aR-waX"/>
                                             <action selector="detailedInfoPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4KB-xK-Xd9"/>
                                         </connections>
                                     </button>
@@ -99,7 +103,7 @@
                 <outlet property="regionLabel" destination="Y5p-3k-BAq" id="hgd-Yh-KF7"/>
                 <outlet property="titleLabel" destination="ppE-4U-nhv" id="bu4-AL-R8i"/>
             </connections>
-            <point key="canvasLocation" x="410" y="328"/>
+            <point key="canvasLocation" x="359" y="302"/>
         </tableViewCell>
     </objects>
     <resources>

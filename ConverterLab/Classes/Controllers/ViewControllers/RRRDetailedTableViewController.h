@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RRRSingleOrganization.h"
+#import "RRRHamburgerButtonView.h"
+#import "RRRHamburgerOverlayView.h"
 
-@interface RRRDetailedTableViewController : UITableViewController
-
+@interface RRRDetailedTableViewController : UITableViewController <HamburgerButtonDelegate, TableCellButtonsDelegate>
+@property (strong,nonatomic) RRRSingleOrganization * singleOrganization;
 @end
