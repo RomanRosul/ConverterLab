@@ -11,11 +11,11 @@
 
 @implementation RRRHamburgerOverlayView
 
-- (instancetype) init {
-  self = [super init];
+- (instancetype) initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
   if (self)
   {
-    self.frame = [[UIScreen mainScreen]bounds];
+   // self.frame = [[UIScreen mainScreen]bounds];
     
     NSArray *theView =  [[NSBundle mainBundle] loadNibNamed:@"RRRHamburgerOverlayView" owner:self options:nil];
     UIView *nv = [theView objectAtIndex:0];

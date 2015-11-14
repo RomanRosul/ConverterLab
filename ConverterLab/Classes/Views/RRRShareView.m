@@ -1,14 +1,14 @@
 //
-//  RRRHamburgerView.m
+//  RRRShareView.m
 //  ConverterLab
 //
 //  Created by Roman R on 14.11.15.
 //  Copyright © 2015 iOS_courses_FinalTask. All rights reserved.
 //
 
-#import "RRRHamburgerButtonView.h"
+#import "RRRShareView.h"
 
-@implementation RRRHamburgerButtonView
+@implementation RRRShareView
 
 - (instancetype) initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
@@ -20,20 +20,21 @@
     [self addSubview:hamburgerButton];
     hamburgerButton.layer.cornerRadius = hamburgerButton.frame.size.width/2;
     [hamburgerButton  addTarget:self
-                                  action:@selector(hamburgerPressed)
-                        forControlEvents:UIControlEventTouchUpInside];
+                         action:@selector(hamburgerPressed)
+               forControlEvents:UIControlEventTouchUpInside];
   }
   return self;
 }
 
 - (void)hamburgerPressed {
- // NSLog(@"ham");
-  SEL selector = @selector(hamburgerDidPressed);
-  if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
-  {
-    [self.delegateInstance performSelector:selector];
-  }
-
+  // NSLog(@"ham");
+//  SEL selector = @selector(hamburgerDidPressed);
+//  if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+//  {
+//    [self.delegateInstance performSelector:selector];
+//  }
+  
 }
+
 
 @end

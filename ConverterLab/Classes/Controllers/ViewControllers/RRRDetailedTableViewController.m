@@ -8,6 +8,7 @@
 
 #import "RRRDetailedTableViewController.h"
 #import "RRRNavigationController.h"
+#import "RRRShareView.h"
 
 @interface RRRDetailedTableViewController ()
 
@@ -103,9 +104,10 @@
 #pragma mark - Hamburger button delegate
 
 - (void) hamburgerDidPressed {
-  
-  RRRHamburgerOverlayView * overlayView = [[ RRRHamburgerOverlayView alloc] init];
+  //CGRect  frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+  RRRHamburgerOverlayView * overlayView = [[ RRRHamburgerOverlayView alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
   overlayView.delegateInstance = self;
+  //overlayView.frame = self.view.frame;
   [self.navigationController.view addSubview:overlayView];
 }
 
@@ -165,6 +167,9 @@
 
 - (void)navBarShareButtonPressed {
   NSLog(@"share");
+  RRRShareView * shareView = [[RRRShareView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height)];
+  [self.navigationController.view addSubview: shareView];
+
 }
 
 

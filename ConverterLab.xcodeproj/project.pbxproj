@@ -10,6 +10,7 @@
 		30908CF01BF79E8900D72889 /* RRRHamburgerButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30908CEF1BF79E8900D72889 /* RRRHamburgerButtonView.m */; };
 		30908CF31BF7AF8F00D72889 /* RRRHamburgerOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30908CF21BF7AF8F00D72889 /* RRRHamburgerOverlayView.m */; };
 		30908CF51BF7B20300D72889 /* RRRHamburgerOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30908CF41BF7B20300D72889 /* RRRHamburgerOverlayView.xib */; };
+		30908CFD1BF7D03000D72889 /* RRRShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30908CFC1BF7D03000D72889 /* RRRShareView.m */; };
 		30A6CE701BF4A9730040ACC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE6F1BF4A9730040ACC0 /* AppDelegate.m */; };
 		30A6CE731BF4A9A30040ACC0 /* RRRSingleCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE721BF4A9A30040ACC0 /* RRRSingleCurrency.m */; };
 		30A6CE761BF4A9BC0040ACC0 /* RRRSingleOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE751BF4A9BC0040ACC0 /* RRRSingleOrganization.m */; };
@@ -47,6 +48,8 @@
 		30908CF11BF7AF8F00D72889 /* RRRHamburgerOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRHamburgerOverlayView.h; sourceTree = "<group>"; };
 		30908CF21BF7AF8F00D72889 /* RRRHamburgerOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRHamburgerOverlayView.m; sourceTree = "<group>"; };
 		30908CF41BF7B20300D72889 /* RRRHamburgerOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRHamburgerOverlayView.xib; sourceTree = "<group>"; };
+		30908CFB1BF7D03000D72889 /* RRRShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRShareView.h; sourceTree = "<group>"; };
+		30908CFC1BF7D03000D72889 /* RRRShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRShareView.m; sourceTree = "<group>"; };
 		30A6CE6E1BF4A9730040ACC0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		30A6CE6F1BF4A9730040ACC0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		30A6CE711BF4A9A30040ACC0 /* RRRSingleCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRSingleCurrency.h; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				30908CF11BF7AF8F00D72889 /* RRRHamburgerOverlayView.h */,
 				30908CF21BF7AF8F00D72889 /* RRRHamburgerOverlayView.m */,
 				30908CF41BF7B20300D72889 /* RRRHamburgerOverlayView.xib */,
+				30908CFB1BF7D03000D72889 /* RRRShareView.h */,
+				30908CFC1BF7D03000D72889 /* RRRShareView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				30A6CE761BF4A9BC0040ACC0 /* RRRSingleOrganization.m in Sources */,
 				30A6CE701BF4A9730040ACC0 /* AppDelegate.m in Sources */,
 				30D2669B1BF3D8C200261977 /* AFNetworkReachabilityManager.m in Sources */,
+				30908CFD1BF7D03000D72889 /* RRRShareView.m in Sources */,
 				30D266991BF3D8C200261977 /* AFHTTPRequestOperationManager.m in Sources */,
 				30AAFB111BF6ABE6006B546E /* RRRAnnotation.m in Sources */,
 			);
