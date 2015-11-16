@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "RRRSingleOrganization.h"
 
+@protocol ShareButtonDelegate <NSObject>
+@required
+- (void)ShareDidPressed;
+@end
+
 @interface RRRShareView : UIView
 
 @property (strong,nonatomic) RRRSingleOrganization * singleOrganization;
+@property (nonatomic, weak) id <ShareButtonDelegate> delegateInstance;
 
 - (instancetype) initWithFrame:(CGRect)frame  andData: (RRRSingleOrganization *)aSingleOrganization;
 

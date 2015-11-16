@@ -95,13 +95,12 @@
 
 - (void)shareButtonPressed {
   // NSLog(@"ham");
-//  SEL selector = @selector(hamburgerDidPressed);
-//  if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
-//  {
-//    [self.delegateInstance performSelector:selector];
   [self removeFromSuperview];
-//  }
-  
+  SEL selector = @selector(ShareDidPressed);
+  if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+  {
+    [self.delegateInstance performSelector:selector];
+  }  
 }
 
 

@@ -17,7 +17,6 @@
 		30A9CB081BF7450C00D3A3E0 /* RRRMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A9CB061BF7450C00D3A3E0 /* RRRMapViewController.xib */; };
 		30A9CB0C1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A9CB0A1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m */; };
 		30A9CB0D1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A9CB0B1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib */; };
-		30AAFB091BF699B3006B546E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AAFB081BF699B3006B546E /* MapKit.framework */; };
 		30AAFB0D1BF6A479006B546E /* RRRMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AAFB0B1BF6A479006B546E /* RRRMapViewController.m */; };
 		30AAFB111BF6ABE6006B546E /* RRRAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AAFB101BF6ABE6006B546E /* RRRAnnotation.m */; };
 		30C0B7931BF924B3007B1110 /* UIColor+fromHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C0B7921BF924B3007B1110 /* UIColor+fromHex.m */; };
@@ -25,6 +24,7 @@
 		30C0B7981BF93124007B1110 /* RRRDetailsFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C0B7961BF93124007B1110 /* RRRDetailsFirstTableViewCell.xib */; };
 		30C0B79C1BF93D7A007B1110 /* RRRDetailsSecondTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C0B79A1BF93D7A007B1110 /* RRRDetailsSecondTableViewCell.m */; };
 		30C0B79D1BF93D7A007B1110 /* RRRDetailsSecondTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C0B79B1BF93D7A007B1110 /* RRRDetailsSecondTableViewCell.xib */; };
+		30C0B79F1BF957D9007B1110 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C0B79E1BF957D9007B1110 /* MapKit.framework */; };
 		30D0061A1BF620D200550E3F /* RRRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D006181BF620D200550E3F /* RRRTableViewCell.m */; };
 		30D0061B1BF620D200550E3F /* RRRTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D006191BF620D200550E3F /* RRRTableViewCell.xib */; };
 		30D266541BF3C0EC00261977 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D266531BF3C0EC00261977 /* Assets.xcassets */; };
@@ -45,6 +45,7 @@
 		30D2669F1BF3D8C200261977 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266951BF3D8C200261977 /* AFURLResponseSerialization.m */; };
 		30D266A01BF3D8C200261977 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266971BF3D8C200261977 /* AFURLSessionManager.m */; };
 		30D266A31BF3DA1D00261977 /* RRRNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D266A21BF3DA1D00261977 /* RRRNetworkManager.m */; };
+		30E2F0481BFA13B000F4E9D7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E2F0471BFA13B000F4E9D7 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +66,6 @@
 		30A9CB091BF74BF800D3A3E0 /* RRRDetailedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRDetailedTableViewController.h; sourceTree = "<group>"; };
 		30A9CB0A1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRDetailedTableViewController.m; sourceTree = "<group>"; };
 		30A9CB0B1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRDetailedTableViewController.xib; sourceTree = "<group>"; };
-		30AAFB081BF699B3006B546E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		30AAFB0A1BF6A479006B546E /* RRRMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRMapViewController.h; sourceTree = "<group>"; };
 		30AAFB0B1BF6A479006B546E /* RRRMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRMapViewController.m; sourceTree = "<group>"; };
 		30AAFB0F1BF6ABE6006B546E /* RRRAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRAnnotation.h; sourceTree = "<group>"; };
@@ -78,6 +78,7 @@
 		30C0B7991BF93D7A007B1110 /* RRRDetailsSecondTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRDetailsSecondTableViewCell.h; sourceTree = "<group>"; };
 		30C0B79A1BF93D7A007B1110 /* RRRDetailsSecondTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRDetailsSecondTableViewCell.m; sourceTree = "<group>"; };
 		30C0B79B1BF93D7A007B1110 /* RRRDetailsSecondTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRDetailsSecondTableViewCell.xib; sourceTree = "<group>"; };
+		30C0B79E1BF957D9007B1110 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		30D006171BF620D200550E3F /* RRRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRTableViewCell.h; sourceTree = "<group>"; };
 		30D006181BF620D200550E3F /* RRRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRTableViewCell.m; sourceTree = "<group>"; };
 		30D006191BF620D200550E3F /* RRRTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRTableViewCell.xib; sourceTree = "<group>"; };
@@ -115,6 +116,7 @@
 		30D266971BF3D8C200261977 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		30D266A11BF3DA1D00261977 /* RRRNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRNetworkManager.h; sourceTree = "<group>"; };
 		30D266A21BF3DA1D00261977 /* RRRNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRNetworkManager.m; sourceTree = "<group>"; };
+		30E2F0471BFA13B000F4E9D7 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +124,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30AAFB091BF699B3006B546E /* MapKit.framework in Frameworks */,
+				30E2F0481BFA13B000F4E9D7 /* MessageUI.framework in Frameworks */,
+				30C0B79F1BF957D9007B1110 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +144,8 @@
 		30D266381BF3C0EC00261977 = {
 			isa = PBXGroup;
 			children = (
-				30AAFB081BF699B3006B546E /* MapKit.framework */,
+				30E2F0471BFA13B000F4E9D7 /* MessageUI.framework */,
+				30C0B79E1BF957D9007B1110 /* MapKit.framework */,
 				30D266811BF3CAAD00261977 /* Default-568h@2x.png */,
 				30D266431BF3C0EC00261977 /* ConverterLab */,
 				30D266421BF3C0EC00261977 /* Products */,

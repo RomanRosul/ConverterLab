@@ -12,7 +12,9 @@
 #import "RRRHamburgerOverlayView.h"
 #import "RRRDetailsFirstTableViewCell.h"
 #import "RRRDetailsSecondTableViewCell.h"
+#import <MessageUI/MessageUI.h>
+#import "RRRShareView.h"
 
-@interface RRRDetailedTableViewController : UITableViewController <HamburgerButtonDelegate, TableCellButtonsDelegate>
+@interface RRRDetailedTableViewController : UITableViewController <HamburgerButtonDelegate, TableCellButtonsDelegate, MFMailComposeViewControllerDelegate,ShareButtonDelegate>
 @property (strong,nonatomic) RRRSingleOrganization * singleOrganization;
 @end

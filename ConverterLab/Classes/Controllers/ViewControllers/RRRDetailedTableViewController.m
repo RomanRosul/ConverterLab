@@ -202,11 +202,50 @@
   NSLog(@"calling to %@",telURL);
 }
 
+#pragma mark - MFMailComposeViewControllerDelegate
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+  switch (result) {
+    case MFMailComposeResultSent:
+      NSLog(@"You sent the email.");
+      break;
+    case MFMailComposeResultSaved:
+      NSLog(@"You saved a draft of this email");
+      break;
+    case MFMailComposeResultCancelled:
+      NSLog(@"You cancelled sending this email.");
+      break;
+    case MFMailComposeResultFailed:
+      NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+      break;
+    default:
+      NSLog(@"An error occurred when trying to compose this email");
+      break;
+  }
+  
+  [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 #pragma mark - other
 
 - (void)navBarShareButtonPressed {
   RRRShareView * shareView = [[RRRShareView alloc] initWithFrame:self.view.frame andData:self.singleOrganization];
+  shareView.delegateInstance = self;
   [self.navigationController.view addSubview: shareView];
+}
+
+- (void) ShareDidPressed {
+  if ([MFMailComposeViewController canSendMail])
+  {
+    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+    [picker setMailComposeDelegate:self];
+    [self presentViewController:picker animated:YES completion:NULL];
+  }
+  else
+  {
+    NSLog(@"This device cannot send email");
+  }
+
 }
 
 

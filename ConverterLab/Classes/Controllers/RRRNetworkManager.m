@@ -49,7 +49,7 @@
     parameters:nil
        success:^(NSURLSessionDataTask *task, id responseObject) {
          NSDictionary * responseDictionary  = (NSMutableDictionary *)responseObject;
-         
+        // NSLog(@"ok");
          SEL selector = @selector(webDataSourceDidUpdated:);
          if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
          {
@@ -58,12 +58,12 @@
          httpSuccess =  YES;
        }
        failure:^(NSURLSessionDataTask *task, NSError *error) {
-         
-//         SEL selector = @selector(webDataSourceNotUpdated);
-//         if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
-//         {
-//           [self.delegateInstance performSelector:selector];
-//         }         
+         //NSLog(@"no");
+         SEL selector = @selector(webDataSourceNotUpdated);
+         if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+         {
+           [self.delegateInstance performSelector:selector];
+         }         
        }];
   return httpSuccess;
  }

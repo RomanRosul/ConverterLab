@@ -15,7 +15,7 @@
 #import "RRRDetailedTableViewController.h"
 #import "RRRSingleOrganization.h"
 
-@interface RRRTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, TableCellButtonsDelegate>//, //UISearchControllerDelegate, UISearchResultsUpdating>
+@interface RRRTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, TableCellButtonsDelegate, DataBaseManagerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *dataFetchedResultsController;
 @property (strong, nonatomic) UISearchBar *searchBar;

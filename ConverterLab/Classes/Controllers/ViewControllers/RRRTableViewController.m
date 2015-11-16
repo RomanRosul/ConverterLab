@@ -9,11 +9,9 @@
 #import "RRRTableViewController.h"
 #import "RRRNavigationController.h"
 
-//#import "RRRNetworkManager.h"
 
 @interface RRRTableViewController ()
 @property (nonatomic)  UIView * overlayView;
-
 @end
 
 @implementation RRRTableViewController
@@ -33,12 +31,10 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   self.navigationItem.rightBarButtonItem = navBarSearchButton;
   
   self.dataFetchedResultsController.delegate = self;
-  //[RRRDataBaseManager sharedDBManager].delegateInstance = self;
-  [self lockUI];
-  if (![[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb]) {
-    [self dataBaseNotUpdated];
-  }
+  [RRRDataBaseManager sharedDBManager].delegateInstance = self;
   
+  [self lockUI];
+  [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];
   [self addSearchBar];
   
   self.navigationItem.backBarButtonItem =
@@ -52,7 +48,7 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
   if (navController.hamburgerButton) {
   [navController.hamburgerButton removeFromSuperview];
-  }  
+  }
 }
 
 -(void)addSearchBar
@@ -275,10 +271,10 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 
 - (void)dataBaseNotUpdated {
   [self unlockUI];
+  NSLog(@"not updated");
 }
 
 #pragma mark - other
-#warning catch error code
 - (void)displayError:(NSError *)error
 {
   dispatch_async(dispatch_get_main_queue(),^ {

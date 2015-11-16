@@ -11,10 +11,10 @@
 @implementation RRRDetailsSecondTableViewCell
 
 - (void)awakeFromNib {
-  self.contentView.layer.shadowOffset = CGSizeMake(1, 0);
-  self.contentView.layer.shadowColor = [[UIColor blackColor] CGColor];
-  self.contentView.layer.shadowRadius = 5;
-  self.contentView.layer.shadowOpacity = .25;
+//  self.contentView.layer.shadowOffset = CGSizeMake(1, 0);
+//  self.contentView.layer.shadowColor = [[UIColor blackColor] CGColor];
+//  self.contentView.layer.shadowRadius = 5;
+//  self.contentView.layer.shadowOpacity = .25;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
