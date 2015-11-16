@@ -30,4 +30,5 @@
 @property (nonatomic, weak) id <TableCellButtonsDelegate> delegateInstance;
 @property (nonatomic, strong) CALayer *borderBottom;
 
+
 @end

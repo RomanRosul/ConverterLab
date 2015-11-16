@@ -33,9 +33,12 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   self.navigationItem.rightBarButtonItem = navBarSearchButton;
   
   self.dataFetchedResultsController.delegate = self;
-  [RRRDataBaseManager sharedDBManager].delegateInstance = self;
+  //[RRRDataBaseManager sharedDBManager].delegateInstance = self;
   [self lockUI];
-  [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];
+  if (![[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb]) {
+    [self dataBaseNotUpdated];
+  }
+  
   [self addSearchBar];
   
   self.navigationItem.backBarButtonItem =
@@ -76,29 +79,20 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 }
 
 - (void)buttonMapPressed:(NSNumber *)tableRow {
- // NSLog(@"map row %@",tableRow);
   NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
   NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
   NSString * fullAddressString = [NSString stringWithFormat:@"Ukraine, %@, %@, %@",[managedObject valueForKey:@"region"],[managedObject valueForKey:@"city"],[managedObject valueForKey:@"address"]];
-  // NSLog(@"map row %@",fullAddressString);
   CLGeocoder *geocoder = [[CLGeocoder alloc] init];
   [geocoder geocodeAddressString:fullAddressString completionHandler:^(NSArray *placemarks, NSError *error) {
-    if (error != nil)
-    {
-     // NSLog(@"Geocode failed with error: %@", error);
+    if (error != nil)  {
       [self displayError:error];
       return;
     }
     CLPlacemark *placemark = (CLPlacemark *)placemarks[0];
     RRRMapViewController * locationViewController = [RRRMapViewController new];
-    locationViewController.location = placemark.location; //(__bridge CLLocationCoordinate2D *)(placemark.location);
+    locationViewController.location = placemark.location;
+    locationViewController.title = [managedObject valueForKey:@"title"];
     [self.navigationController pushViewController:locationViewController animated:YES];
-//    NSString *ll = [NSString stringWithFormat:@"%f,%f",
-//                    placemark.location.coordinate.latitude,
-//                    placemark.location.coordinate.longitude];
-//    ll = [ll stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet];
-//    NSString *url = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@", ll];
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
   }];
 }
 
@@ -248,7 +242,7 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 }
 
 - (void)configureCell:(RRRTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-  NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:indexPath];
+  NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:indexPath];  
   cell.titleLabel.text = [managedObject valueForKey:@"title"];
   cell.regionLabel.text = [managedObject valueForKey:@"region"];
   cell.cityLabel.text = [managedObject valueForKey:@"city"];
@@ -309,16 +303,14 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
   UILabel * statusLabel =[[UILabel alloc] initWithFrame:CGRectMake(0,[UIScreen mainScreen].bounds.size.height-20, [UIScreen mainScreen].bounds.size.width, 20)];
-  statusLabel.backgroundColor = [UIColor colorWithRed:0.6 green:0 blue:0 alpha:0.8];
-statusLabel.text = @"Updating...";
-  //UIView * statusView = [[UIView alloc] initWithFrame:CGRectMake(0,[UIScreen mainScreen].bounds.size.height-20, [UIScreen mainScreen].bounds.size.width, 20)];
-  //statusView.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.8];
+  statusLabel.backgroundColor = [UIColor colorwithHexString:@"#b0bec5" alpha:0.8];
+  statusLabel.text = @"Updating...";
+  statusLabel.textColor = [UIColor whiteColor];
   [self.overlayView addSubview:statusLabel];
   [self.navigationController.view addSubview:self.overlayView];
 }
 
 -(void) unlockUI {
-  
     if (self.overlayView) {
       [self.overlayView removeFromSuperview];
     }

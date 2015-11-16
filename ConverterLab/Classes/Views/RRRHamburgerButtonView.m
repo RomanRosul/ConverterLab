@@ -7,6 +7,7 @@
 //
 
 #import "RRRHamburgerButtonView.h"
+#import "UIColor+fromHex.h"
 
 @implementation RRRHamburgerButtonView
 
@@ -16,7 +17,7 @@
   {
     UIButton * hamburgerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [hamburgerButton setImage:[UIImage imageNamed:@"ic_hamburger"] forState:UIControlStateNormal];
-    hamburgerButton.backgroundColor = [UIColor redColor];
+    hamburgerButton.backgroundColor = [UIColor colorwithHexString:@"#f06292" alpha:1];
     [self addSubview:hamburgerButton];
     hamburgerButton.layer.cornerRadius = hamburgerButton.frame.size.width/2;
     [hamburgerButton  addTarget:self

@@ -41,9 +41,10 @@
 }
 
 
-- (void) refreshDataSourceFromWeb {
+- (BOOL) refreshDataSourceFromWeb {
   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
   manager.requestSerializer = [AFJSONRequestSerializer serializer];
+  __block BOOL httpSuccess = NO;
   [manager GET:[self.dataSourceUrl absoluteString]
     parameters:nil
        success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -54,16 +55,17 @@
          {
            [self.delegateInstance performSelector:selector withObject:responseDictionary];
          }
-        // [self.delegateInstance webDataSourceDidUpdated:responseDictionary];
+         httpSuccess =  YES;
        }
        failure:^(NSURLSessionDataTask *task, NSError *error) {
          
-         SEL selector = @selector(webDataSourceNotUpdated);
-         if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
-         {
-           [self.delegateInstance performSelector:selector];
-         }         
+//         SEL selector = @selector(webDataSourceNotUpdated);
+//         if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+//         {
+//           [self.delegateInstance performSelector:selector];
+//         }         
        }];
+  return httpSuccess;
  }
 
 @end

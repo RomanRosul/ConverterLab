@@ -9,6 +9,8 @@
 #import "RRRDetailedTableViewController.h"
 #import "RRRNavigationController.h"
 #import "RRRShareView.h"
+#import "UIColor+fromHex.h"
+
 
 @interface RRRDetailedTableViewController ()
 
@@ -18,14 +20,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  self.tableView.backgroundColor = [UIColor yellowColor];
+  self.tableView.backgroundColor = [UIColor colorwithHexString:@"#eeeeee" alpha:1];
   
   UIView * detailedTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
   UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
   UILabel * subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 200, 20)];
-  titleLabel.backgroundColor = [UIColor redColor];
-  subtitleLabel.backgroundColor = [UIColor greenColor];
-  titleLabel.text = self.singleOrganization.title;       //@"title";
+  titleLabel.textColor = [UIColor whiteColor];
+  subtitleLabel.textColor = [UIColor whiteColor];
+  subtitleLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:14.0f];
+  titleLabel.text = self.singleOrganization.title;  
   subtitleLabel.text = self.singleOrganization.city;
   [detailedTitleView addSubview:titleLabel];
   [detailedTitleView addSubview:subtitleLabel];
@@ -33,7 +36,9 @@
   
   UIImage* navBarShareImage = [UIImage imageNamed:@"ic_share"];
   UIBarButtonItem *navBarShareButton = [[UIBarButtonItem alloc] initWithImage:navBarShareImage style:UIBarButtonItemStylePlain target:self action:@selector(navBarShareButtonPressed)];
-  self.navigationItem.rightBarButtonItem = navBarShareButton;  
+  self.navigationItem.rightBarButtonItem = navBarShareButton;
+  
+  
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -54,50 +59,87 @@
   return self.singleOrganization.currencies.count+2;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row)
+  {
+    case 0: return 130;
+    case 1: return 55;
+    default: return 50;
+  }
+  return 55;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   switch (indexPath.row)
   {
-    case 0: return [self cellForDetailedInfo];
-    case 1: return [self cellForCurrencyesHeader];
-    default: return [self cellForCurrenciesList:indexPath.row];
+    case 0: return [self cellForDetailedInfoForIndexPath:indexPath];
+    case 1: return [self cellForCurrencyesHeaderForIndexPath:indexPath];
+    default: return [self cellForCurrenciesListForIndexPath:indexPath];
   }
     return nil;
 }
 
-- (UITableViewCell *)blankCell
+//- (UITableViewCell *)blankCell
+//{
+//  NSString *cellID = @"Cell";
+//  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+//  cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//  return cell;
+//}
+
+- (UITableViewCell *)cellForDetailedInfoForIndexPath:(NSIndexPath *)indexPath
 {
-  NSString *cellID = @"Cell";
-  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+  NSString *cellID = @"FirstCell";
+  [self.tableView registerNib:[UINib nibWithNibName:@"RRRDetailsFirstTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
+  RRRDetailsFirstTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+  if (cell == nil) {
+    cell = [[RRRDetailsFirstTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                   reuseIdentifier:cellID];
+  }
+ // UINib * cellNib = [UINib nibWithNibName:@"RRRDetailsFirstTableViewCell" bundle:nil];
+  //
+  
+//  RRRDetailsFirstTableViewCell *cell = [[RRRDetailsFirstTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  cell.titleLabel.text = self.singleOrganization.title;
+  cell.linkLabel.text = [NSString stringWithFormat:@"%@",self.singleOrganization.link];
+  cell.addressLabel.text = [NSString stringWithFormat:@"Адрес: %@",self.singleOrganization.address];
+  cell.phoneLabel.text = [NSString stringWithFormat:@"Телефон: %@",self.singleOrganization.phone];  
+  
+  return cell;
+}
+
+- (UITableViewCell *)cellForCurrencyesHeaderForIndexPath:(NSIndexPath *)indexPath
+
+{
+  NSString *cellID = @"SecondCell";
+  [self.tableView registerNib:[UINib nibWithNibName:@"RRRDetailsSecondTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
+  RRRDetailsSecondTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+  if (cell == nil) {
+    cell = [[RRRDetailsSecondTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                               reuseIdentifier:cellID];
+  }
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
   return cell;
 }
 
-- (UITableViewCell *)cellForDetailedInfo
-{
-  NSString *cellID = @"Cell";
-  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
-  cell.selectionStyle = UITableViewCellSelectionStyleNone;
-   cell.textLabel.text = self.singleOrganization.title;
-  return cell;
-}
+- (UITableViewCell *)cellForCurrenciesListForIndexPath:(NSIndexPath *)indexPath {
+  NSInteger index = indexPath.row-2;
+  NSString *cellID = @"OtherCell";
+  [self.tableView registerNib:[UINib nibWithNibName:@"RRRDetailsSecondTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
+  RRRDetailsSecondTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+  if (cell == nil) {
+    cell = [[RRRDetailsSecondTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                reuseIdentifier:cellID];
+  }
 
-- (UITableViewCell *)cellForCurrencyesHeader
-{
-  NSString *cellID = @"Cell";
-  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  cell.textLabel.text = @"buy/sell";
-  return cell;
-}
-
-- (UITableViewCell *)cellForCurrenciesList:(NSInteger)index {
-  NSString *cellID = @"Cell";
-  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
-  cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  RRRSingleCurrency * currency =self.singleOrganization.currencies[index-2];
-  cell.textLabel.text = [currency.ask description];
-  cell.detailTextLabel.text = [currency.bid description];
+  RRRSingleCurrency * currency =self.singleOrganization.currencies[index];
+  cell.titleLabel.text = currency.localizedTitle;
+  cell.buyLabel.text = [currency.bid description];
+  cell.sellLabel.text = [currency.ask description];
+  cell.upImage.alpha =1;
+  cell.downImage.alpha =1;
   return cell;
 }
 
@@ -153,10 +195,7 @@
 }
 
 - (void)buttonCallPressed:(NSNumber *)tableRow {
-  //NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
- // NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
-  
-  NSString *cleanedString = [[self.singleOrganization.phone componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
+   NSString *cleanedString = [[self.singleOrganization.phone componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
   NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:+38%@", cleanedString]];
 #warning uncomment to make a call
   // [[UIApplication sharedApplication] openURL:telURL];
@@ -166,10 +205,8 @@
 #pragma mark - other
 
 - (void)navBarShareButtonPressed {
-  NSLog(@"share");
-  RRRShareView * shareView = [[RRRShareView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height)];
+  RRRShareView * shareView = [[RRRShareView alloc] initWithFrame:self.view.frame andData:self.singleOrganization];
   [self.navigationController.view addSubview: shareView];
-
 }
 
 

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RRRSingleOrganization.h"
 
 @interface RRRShareView : UIView
+
+@property (strong,nonatomic) RRRSingleOrganization * singleOrganization;
+
+- (instancetype) initWithFrame:(CGRect)frame  andData: (RRRSingleOrganization *)aSingleOrganization;
 
 @end

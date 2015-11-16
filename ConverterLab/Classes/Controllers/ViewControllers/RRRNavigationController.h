@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RRRHamburgerButtonView.h"
 #import "RRRTableViewController.h"
+#import "UIColor+fromHex.h"
 
 @interface RRRNavigationController : UINavigationController
 

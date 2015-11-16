@@ -7,12 +7,15 @@
 //
 
 #import "RRRTableViewCell.h"
+#import "UIColor+fromHex.h"
 
 @implementation RRRTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
-  
+  self.contentView.layer.shadowOffset = CGSizeMake(1, 0);
+  self.contentView.layer.shadowColor = [[UIColor blackColor] CGColor];
+  self.contentView.layer.shadowRadius = 5;
+  self.contentView.layer.shadowOpacity = .25;  
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -80,7 +83,7 @@
 
 - (void)addUnderlineTo:(UIButton *)button {
   self.borderBottom = [CALayer layer];
-  self.borderBottom.backgroundColor = [UIColor redColor].CGColor;
+  self.borderBottom.backgroundColor = [UIColor colorwithHexString:@"#ff4081" alpha:1].CGColor;
   self.borderBottom.frame = CGRectMake(0,button.frame.size.height, button.frame.size.width, 2);
   [button.layer addSublayer:self.borderBottom];
 }

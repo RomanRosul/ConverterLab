@@ -20,7 +20,7 @@
   self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
   self.mapView.delegate = self;
   [self.view addSubview:self.mapView];
-  MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.location.coordinate, 3000, 1500);
+  MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.location.coordinate, 500, 500);
   RRRAnnotation * pin = [RRRAnnotation new];
   pin.coordinate = self.location.coordinate;
   [self.mapView addAnnotation:pin];

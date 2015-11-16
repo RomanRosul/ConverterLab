@@ -112,7 +112,7 @@
     [organizationManagedObject setValue:currenciesData forKey:@"currencies"];
     [self saveContext];
   }
-  NSLog(@"data base updated from web, %@",self.date);
+ // NSLog(@"data base updated from web, %@",self.date);
 }
 
 - (NSString *)nullCheck:(NSString *) aString{
@@ -122,13 +122,13 @@
   return (NSString *)aString;
 }
 
-- (void)webDataSourceNotUpdated {
-  SEL selector = @selector(dataBaseNotUpdated);
-  if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
-  {
-    [self.delegateInstance performSelector:selector];
-  }
-}
+//- (void)webDataSourceNotUpdated {
+//  SEL selector = @selector(dataBaseNotUpdated);
+//  if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
+//  {
+//    [self.delegateInstance performSelector:selector];
+//  }
+//}
 
 
 - (NSURL *)applicationDocumentsDirectory {

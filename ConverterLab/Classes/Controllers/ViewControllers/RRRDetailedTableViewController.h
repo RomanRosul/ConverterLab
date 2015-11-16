@@ -10,6 +10,8 @@
 #import "RRRSingleOrganization.h"
 #import "RRRHamburgerButtonView.h"
 #import "RRRHamburgerOverlayView.h"
+#import "RRRDetailsFirstTableViewCell.h"
+#import "RRRDetailsSecondTableViewCell.h"
 
 @interface RRRDetailedTableViewController : UITableViewController <HamburgerButtonDelegate, TableCellButtonsDelegate>
 @property (strong,nonatomic) RRRSingleOrganization * singleOrganization;
