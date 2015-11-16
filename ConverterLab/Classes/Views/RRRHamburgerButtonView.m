@@ -27,8 +27,7 @@
   return self;
 }
 
-- (void)hamburgerPressed {
- // NSLog(@"ham");
+- (void)hamburgerPressed { 
   SEL selector = @selector(hamburgerDidPressed);
   if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
   {

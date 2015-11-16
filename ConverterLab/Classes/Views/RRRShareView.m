@@ -15,40 +15,29 @@
   self = [super initWithFrame:frame];
   if (self)
   {
-    UIView * backgroundView = [[UIView alloc] initWithFrame:self.frame];
-                               //CGRectMake(0, 50, self.frame.size.width, self.frame.size.height-100)];
-    backgroundView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.7];
-    [self addSubview:backgroundView];
     
+    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     UIView * contentView = [[UIView alloc] initWithFrame: CGRectMake(10, 80, self.frame.size.width-20, self.frame.size.height-200)];
     contentView.backgroundColor = [UIColor whiteColor];
-    [backgroundView addSubview:contentView];
-    
-    //UIView * detailedTitleView = [[UIView alloc] initWithFrame:CGRectMake(50, 50, 200, 40)];
+    [self addSubview:contentView];    
     UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 260, 20)];
     titleLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Bold" size:22.0f];
-   // titleLabel.font.
     
     UILabel * regionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 50, 260, 15)];
     regionLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-SemiBold" size:16.0f];
     regionLabel.textColor = [UIColor colorwithHexString:@"#546e7a" alpha:1];
     
-    
     UILabel * cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 75, 260, 15)];
     cityLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-SemiBold" size:16.0f];
     cityLabel.textColor = [UIColor colorwithHexString:@"#546e7a" alpha:1];
     
-    
-    //titleLabel.backgroundColor = [UIColor redColor];
-    //subtitleLabel.backgroundColor = [UIColor greenColor];
-    titleLabel.text = aSingleOrganization.title;       //@"title";
+    titleLabel.text = aSingleOrganization.title;
     regionLabel.text = aSingleOrganization.region;
     cityLabel.text = aSingleOrganization.city;
     [contentView addSubview:titleLabel];
     [contentView addSubview:regionLabel];
     [contentView addSubview:cityLabel];
-    
-   // NSString * labelName;
+   
     for (NSInteger i=0; i<aSingleOrganization.currencies.count && i<5; i++) {
       RRRSingleCurrency * singleCurrency = (RRRSingleCurrency *)aSingleOrganization.currencies[i];
       UILabel * currencyKeyTitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 120+(i*40), 50, 20)];
@@ -66,8 +55,6 @@
       [contentView addSubview:currencyValue];
     }
     
-    //[contentView addSubview:detailedTitleView];
-    
     UIButton * shareButton = [[UIButton alloc] initWithFrame:CGRectMake(0, contentView.frame.size.height-50, contentView.frame.size.width, 50)];
     shareButton.backgroundColor = [UIColor colorwithHexString:@"#b0bec5" alpha:1 ];
     [shareButton setTitle:@"SHARE" forState:UIControlStateNormal];
@@ -79,8 +66,6 @@
     [shareButton  addTarget:self
                          action:@selector(shareButtonPressed)
               forControlEvents:UIControlEventTouchUpInside];
-    
-    //contentView.frame = CGRectMake(10, 80, self.frame.size.width-20, self.frame.size.height-300);
   }
   return self;
 }
@@ -94,13 +79,22 @@
 }
 
 - (void)shareButtonPressed {
-  // NSLog(@"ham");
   [self removeFromSuperview];
   SEL selector = @selector(ShareDidPressed);
   if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
   {
     [self.delegateInstance performSelector:selector];
   }  
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  
+  UITouch *touch = [touches anyObject];
+  if ([touch view] == self)
+  {
+    [self removeFromSuperview];
+  }
 }
 
 

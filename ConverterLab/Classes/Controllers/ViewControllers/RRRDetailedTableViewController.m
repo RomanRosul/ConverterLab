@@ -146,59 +146,41 @@
 #pragma mark - Hamburger button delegate
 
 - (void) hamburgerDidPressed {
-  //CGRect  frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
   RRRHamburgerOverlayView * overlayView = [[ RRRHamburgerOverlayView alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
   overlayView.delegateInstance = self;
-  //overlayView.frame = self.view.frame;
   [self.navigationController.view addSubview:overlayView];
 }
 
 #pragma mark - Table Cell Buttons delegate
 
 - (void)buttonURLPressed:(NSNumber *)tableRow {
- // NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
- // NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
   NSURL *url = [NSURL URLWithString:self.singleOrganization.link];
   [[UIApplication sharedApplication] openURL:url];
 }
 
 - (void)buttonMapPressed:(NSNumber *)tableRow {
-  
-  RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
-  if (navController.hamburgerButton) {
-    [navController.hamburgerButton removeFromSuperview];
-  }
-  // NSLog(@"map row %@",tableRow);
- // NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
- // NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
-  NSString * fullAddressString = [NSString stringWithFormat:@"Ukraine, %@, %@, %@",self.singleOrganization.region,self.singleOrganization.city,self.singleOrganization.address];
-  // NSLog(@"map row %@",fullAddressString);
+   NSString * fullAddressString = [NSString stringWithFormat:@"Ukraine, %@, %@, %@",self.singleOrganization.region,self.singleOrganization.city,self.singleOrganization.address];
   CLGeocoder *geocoder = [[CLGeocoder alloc] init];
   [geocoder geocodeAddressString:fullAddressString completionHandler:^(NSArray *placemarks, NSError *error) {
     if (error != nil)
     {
-       NSLog(@"Geocode failed with error: %@", error);
-     // [self displayError:error];
+      [self displayError:[NSString stringWithFormat:@"Geocode failed with error: %@", error]];
       return;
     }
     CLPlacemark *placemark = (CLPlacemark *)placemarks[0];
     RRRMapViewController * locationViewController = [RRRMapViewController new];
-    locationViewController.location = placemark.location; //(__bridge CLLocationCoordinate2D *)(placemark.location);
+    RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
+    if (navController.hamburgerButton) {
+      [navController.hamburgerButton removeFromSuperview];
+    }
+    locationViewController.location = placemark.location;
     [self.navigationController pushViewController:locationViewController animated:YES];
-    //    NSString *ll = [NSString stringWithFormat:@"%f,%f",
-    //                    placemark.location.coordinate.latitude,
-    //                    placemark.location.coordinate.longitude];
-    //    ll = [ll stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet];
-    //    NSString *url = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@", ll];
-    //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
   }];
 }
 
 - (void)buttonCallPressed:(NSNumber *)tableRow {
    NSString *cleanedString = [[self.singleOrganization.phone componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
   NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:+38%@", cleanedString]];
-#warning uncomment to make a call
-  // [[UIApplication sharedApplication] openURL:telURL];
   NSLog(@"calling to %@",telURL);
 }
 
@@ -248,6 +230,21 @@
 
 }
 
-
+- (void)displayError:(NSString *)message
+{
+  dispatch_async(dispatch_get_main_queue(),^ {    
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:@"Message"
+                                        message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok =
+    [UIAlertAction actionWithTitle:@"OK"style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) {
+                             
+                           }];
+    [alertController addAction:ok];
+    [self presentViewController:alertController animated:YES completion:nil];
+  });
+}
 
 @end
