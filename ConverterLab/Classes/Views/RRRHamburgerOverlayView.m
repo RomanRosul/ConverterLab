@@ -18,6 +18,7 @@
   {
     NSArray *theViewArray =  [[NSBundle mainBundle] loadNibNamed:@"RRRHamburgerOverlayView" owner:self options:nil];
     UIView *theView = [theViewArray objectAtIndex:0];
+    theView.frame = self.frame;
     [self addSubview:theView];
     theView.backgroundColor = [UIColor colorwithHexString:@"#eeeeee" alpha:0.9];
     [self makeCirkleFrom:self.closeButton];

@@ -17,7 +17,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.mapView = [[MKMapView alloc] init];
-  self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+  self.mapView.frame = [[UIScreen mainScreen]bounds];
+  //CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
   self.mapView.delegate = self;
   [self.view addSubview:self.mapView];
   MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.location.coordinate, 500, 500);

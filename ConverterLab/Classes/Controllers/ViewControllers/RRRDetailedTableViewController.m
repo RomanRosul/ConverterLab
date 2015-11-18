@@ -23,9 +23,10 @@
   self.tableView.backgroundColor = [UIColor colorwithHexString:@"#eeeeee" alpha:1];
   
   UIView * detailedTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
-  UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+  UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 200, 20)];
   UILabel * subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 200, 20)];
   titleLabel.textColor = [UIColor whiteColor];
+  titleLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:16.0f];
   subtitleLabel.textColor = [UIColor whiteColor];
   subtitleLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:14.0f];
   titleLabel.text = self.singleOrganization.title;  
@@ -44,9 +45,8 @@
 - (void) viewWillAppear:(BOOL)animated {
   RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
   navController.hamburgerButton = [[RRRHamburgerButtonView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen]bounds].size.width-65, [[UIScreen mainScreen]bounds].size.height-68, 55, 55)];
-  [navController.view addSubview: navController.hamburgerButton];
+  [navController.view addSubview: navController.hamburgerButton];    
   navController.hamburgerButton.delegateInstance = self;
-  
 }
 
 #pragma mark - Table view data source
@@ -169,6 +169,7 @@
     }
     CLPlacemark *placemark = (CLPlacemark *)placemarks[0];
     RRRMapViewController * locationViewController = [RRRMapViewController new];
+   // locationViewController.view.frame = self.view.frame;
     RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
     if (navController.hamburgerButton) {
       [navController.hamburgerButton removeFromSuperview];
@@ -221,7 +222,7 @@
   {
     MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
     [picker setMailComposeDelegate:self];
-    [self presentViewController:picker animated:YES completion:NULL];
+    //[self presentViewController:picker animated:YES completion:NULL];
   }
   else
   {

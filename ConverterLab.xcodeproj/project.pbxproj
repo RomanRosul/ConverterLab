@@ -16,9 +16,9 @@
 		30A6CE761BF4A9BC0040ACC0 /* RRRSingleOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A6CE751BF4A9BC0040ACC0 /* RRRSingleOrganization.m */; };
 		30A9CB081BF7450C00D3A3E0 /* RRRMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A9CB061BF7450C00D3A3E0 /* RRRMapViewController.xib */; };
 		30A9CB0C1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A9CB0A1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m */; };
-		30A9CB0D1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A9CB0B1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib */; };
 		30AAFB0D1BF6A479006B546E /* RRRMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AAFB0B1BF6A479006B546E /* RRRMapViewController.m */; };
 		30AAFB111BF6ABE6006B546E /* RRRAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AAFB101BF6ABE6006B546E /* RRRAnnotation.m */; };
+		30B4F16E1BFCEA25000B5678 /* RRRDetailedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B4F16D1BFCEA25000B5678 /* RRRDetailedTableViewController.xib */; };
 		30C0B7931BF924B3007B1110 /* UIColor+fromHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C0B7921BF924B3007B1110 /* UIColor+fromHex.m */; };
 		30C0B7971BF93124007B1110 /* RRRDetailsFirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C0B7951BF93124007B1110 /* RRRDetailsFirstTableViewCell.m */; };
 		30C0B7981BF93124007B1110 /* RRRDetailsFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C0B7961BF93124007B1110 /* RRRDetailsFirstTableViewCell.xib */; };
@@ -65,11 +65,11 @@
 		30A9CB061BF7450C00D3A3E0 /* RRRMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRMapViewController.xib; sourceTree = "<group>"; };
 		30A9CB091BF74BF800D3A3E0 /* RRRDetailedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRDetailedTableViewController.h; sourceTree = "<group>"; };
 		30A9CB0A1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRDetailedTableViewController.m; sourceTree = "<group>"; };
-		30A9CB0B1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRDetailedTableViewController.xib; sourceTree = "<group>"; };
 		30AAFB0A1BF6A479006B546E /* RRRMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRMapViewController.h; sourceTree = "<group>"; };
 		30AAFB0B1BF6A479006B546E /* RRRMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRMapViewController.m; sourceTree = "<group>"; };
 		30AAFB0F1BF6ABE6006B546E /* RRRAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRAnnotation.h; sourceTree = "<group>"; };
 		30AAFB101BF6ABE6006B546E /* RRRAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRAnnotation.m; sourceTree = "<group>"; };
+		30B4F16D1BFCEA25000B5678 /* RRRDetailedTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RRRDetailedTableViewController.xib; sourceTree = "<group>"; };
 		30C0B7911BF924B3007B1110 /* UIColor+fromHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+fromHex.h"; sourceTree = "<group>"; };
 		30C0B7921BF924B3007B1110 /* UIColor+fromHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+fromHex.m"; sourceTree = "<group>"; };
 		30C0B7941BF93124007B1110 /* RRRDetailsFirstTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRDetailsFirstTableViewCell.h; sourceTree = "<group>"; };
@@ -213,6 +213,7 @@
 		30D266611BF3C1EB00261977 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				30B4F16D1BFCEA25000B5678 /* RRRDetailedTableViewController.xib */,
 				30C0B7941BF93124007B1110 /* RRRDetailsFirstTableViewCell.h */,
 				30C0B7951BF93124007B1110 /* RRRDetailsFirstTableViewCell.m */,
 				30C0B7961BF93124007B1110 /* RRRDetailsFirstTableViewCell.xib */,
@@ -263,7 +264,6 @@
 				30AAFB0B1BF6A479006B546E /* RRRMapViewController.m */,
 				30A9CB091BF74BF800D3A3E0 /* RRRDetailedTableViewController.h */,
 				30A9CB0A1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m */,
-				30A9CB0B1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -363,10 +363,10 @@
 				30908CF51BF7B20300D72889 /* RRRHamburgerOverlayView.xib in Resources */,
 				30D266821BF3CAAD00261977 /* Default-568h@2x.png in Resources */,
 				30C0B79D1BF93D7A007B1110 /* RRRDetailsSecondTableViewCell.xib in Resources */,
+				30B4F16E1BFCEA25000B5678 /* RRRDetailedTableViewController.xib in Resources */,
 				30D266781BF3C35E00261977 /* RRRTableViewController.xib in Resources */,
 				30A9CB081BF7450C00D3A3E0 /* RRRMapViewController.xib in Resources */,
 				30D0061B1BF620D200550E3F /* RRRTableViewCell.xib in Resources */,
-				30A9CB0D1BF74BF800D3A3E0 /* RRRDetailedTableViewController.xib in Resources */,
 				30D266541BF3C0EC00261977 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
