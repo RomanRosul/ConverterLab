@@ -18,7 +18,6 @@
 
 @property (strong,nonatomic) RRRSingleOrganization * singleOrganization;
 @property (nonatomic, weak) id <ShareButtonDelegate> delegateInstance;
-//@property (nonatomic, strong) UITableView * currenciesTable;
 
 - (instancetype) initWithFrame:(CGRect)frame  andData: (RRRSingleOrganization *)aSingleOrganization;
 

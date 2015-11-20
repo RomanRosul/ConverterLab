@@ -8,6 +8,7 @@
 
 #import "RRRDetailsFirstTableViewCell.h"
 
+
 @implementation RRRDetailsFirstTableViewCell
 
 - (void)awakeFromNib {
@@ -18,10 +19,5 @@
   self.content.layer.shadowOpacity = .25;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

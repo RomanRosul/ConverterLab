@@ -10,14 +10,5 @@
 #import "RRRTableViewCell.h"
 
 @interface RRRHamburgerOverlayView : UIView
-
 @property (nonatomic, weak) id <TableCellButtonsDelegate> delegateInstance;
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
-@property (weak, nonatomic) IBOutlet UIButton *callButton;
-@property (weak, nonatomic) IBOutlet UIButton *linkButton;
-@property (weak, nonatomic) IBOutlet UIButton *mapButton;
-@property (weak, nonatomic) IBOutlet UILabel *callLabel;
-@property (weak, nonatomic) IBOutlet UILabel *linkLabel;
-@property (weak, nonatomic) IBOutlet UILabel *mapLabel;
-
 @end

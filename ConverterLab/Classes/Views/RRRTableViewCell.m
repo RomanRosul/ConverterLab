@@ -9,6 +9,9 @@
 #import "RRRTableViewCell.h"
 #import "UIColor+fromHex.h"
 
+@interface RRRTableViewCell()
+@end
+
 @implementation RRRTableViewCell
 
 - (void)awakeFromNib {

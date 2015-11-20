@@ -10,6 +10,17 @@
 #import "RRRNavigationController.h"
 #import "UIColor+fromHex.h"
 
+@interface RRRHamburgerOverlayView ()
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *linkButton;
+@property (weak, nonatomic) IBOutlet UIButton *mapButton;
+@property (weak, nonatomic) IBOutlet UILabel *callLabel;
+@property (weak, nonatomic) IBOutlet UILabel *linkLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mapLabel;
+
+@end
+
 @implementation RRRHamburgerOverlayView
 
 - (instancetype) initWithFrame:(CGRect)frame {

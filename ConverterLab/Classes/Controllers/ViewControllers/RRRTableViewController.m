@@ -30,9 +30,8 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   self.navigationItem.rightBarButtonItem = navBarSearchButton;
   self.dataFetchedResultsController.delegate = self;
   [RRRDataBaseManager sharedDBManager].delegateInstance = self;
-#warning temporary off
-  // [self lockUI];
- // [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];
+   [self lockUI];
+  [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];
   [self addSearchBar];
   self.navigationItem.backBarButtonItem =
   [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
