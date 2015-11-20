@@ -11,31 +11,32 @@
 
 
 @interface RRRTableViewController ()
+@property (strong, nonatomic) NSFetchedResultsController *dataFetchedResultsController;
+@property (strong, nonatomic) UISearchBar *searchBar;
+@property (strong, nonatomic) UISearchController *searchController;
 @property (nonatomic, strong)  UIView * overlayView;
 @property (nonatomic, strong) NSMutableArray * fetchedArray;
 @end
 
 @implementation RRRTableViewController
 @synthesize dataFetchedResultsController = __dataFetchedResultsController;
-
 static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.title = @"Converter Lab";
-  UINib * cellNib = [UINib nibWithNibName:@"RRRTableViewCell" bundle:nil];
-  [self.tableView registerNib:cellNib forCellReuseIdentifier:RRRCellIdentifier];
-  UIImage* navBarSearchImage = [UIImage imageNamed:@"ic_search"];
-  UIBarButtonItem *navBarSearchButton = [[UIBarButtonItem alloc] initWithImage:navBarSearchImage style:UIBarButtonItemStylePlain target:self action:@selector(navBarSearchButtonPressed)];
+  [self.tableView registerNib:[UINib nibWithNibName:@"RRRTableViewCell" bundle:nil] forCellReuseIdentifier:RRRCellIdentifier];
+  UIBarButtonItem *navBarSearchButton = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"ic_search"] style:UIBarButtonItemStylePlain target:self action:@selector(navBarSearchButtonPressed)];
   self.navigationItem.rightBarButtonItem = navBarSearchButton;
   self.dataFetchedResultsController.delegate = self;
   [RRRDataBaseManager sharedDBManager].delegateInstance = self;
-  [self lockUI];
-  [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];
+#warning temporary off
+  // [self lockUI];
+ // [[RRRNetworkManager sharedNetworkManager] refreshDataSourceFromWeb];
   [self addSearchBar];
   self.navigationItem.backBarButtonItem =
   [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
- [self refreshDataArray];
+  [self refreshDataArray];
 }
 
 - (void)refreshDataArray {
@@ -70,7 +71,7 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   self.searchController.searchBar.tintColor = [UIColor whiteColor];
 }
 
-- (void)navBarSearchButtonPressed{
+- (void)navBarSearchButtonPressed {
   self.tableView.tableHeaderView = self.searchController.searchBar;
   self.searchController.active = YES;
 }
@@ -150,27 +151,18 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   self.dataFetchedResultsController = aFetchedResultsController;
   NSError *error = nil;
   if (![self.dataFetchedResultsController performFetch:&error]) {
-    /*
-     Replace this implementation with code to handle the error appropriately.
-     
-     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-     */
-    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-    abort();
+    [self displayError:[ NSString stringWithFormat:@"Data Fetching error: %@",error]];
   }
   return __dataFetchedResultsController;
 }
 
-
 - (NSCompoundPredicate *)getPredicate {
-  
   NSString *searchText = self.searchController.searchBar.text;
   NSString *strippedString = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
   NSArray *searchItems = nil;
   if (strippedString.length > 0) {
     searchItems = [strippedString componentsSeparatedByString:@" "];
   }
-  
   NSMutableArray *andMatchPredicates = [NSMutableArray array];
   for (NSString *searchString in searchItems) {
     NSMutableArray *searchItemsPredicate = [NSMutableArray array];
@@ -194,17 +186,11 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   [self refreshDataArray];
 }
 
-
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 return self.fetchedArray.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RRRTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RRRCellIdentifier forIndexPath:indexPath];
@@ -227,7 +213,6 @@ return self.fetchedArray.count;
   cell.mapButton.tag = indexPath.row;
   cell.callButton.tag = indexPath.row;
   cell.detailsButton.tag = indexPath.row;
-  [cell.borderBottom removeFromSuperlayer];
 }
 
 #pragma mark - FetchedResultsControllerdelegate
@@ -241,7 +226,6 @@ return self.fetchedArray.count;
 
 - (void)dataBaseNotUpdated {
   [self unlockUI];
-  //NSLog(@"Not updated");
   [self displayError:@"Server not found \n Data not updated"];
 }
 
@@ -262,7 +246,6 @@ return self.fetchedArray.count;
   });
 }
 
-
 - (void) lockUI {
   self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -271,6 +254,10 @@ return self.fetchedArray.count;
   statusLabel.text = @"Updating...";
   statusLabel.textColor = [UIColor whiteColor];
   [self.overlayView addSubview:statusLabel];
+  [self.overlayView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+  statusLabel.translatesAutoresizingMaskIntoConstraints = NO;
+   [self.overlayView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[label(20)]|" options:0 metrics:nil views:@{ @"label" : statusLabel}]];
+  [self.overlayView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[label]|" options:0 metrics:nil views:@{ @"label" : statusLabel}]];
   [self.navigationController.view addSubview:self.overlayView];
 }
 
@@ -279,7 +266,5 @@ return self.fetchedArray.count;
       [self.overlayView removeFromSuperview];
     }
 }
-
-
 
 @end

@@ -14,10 +14,11 @@
 - (void)ShareDidPressed;
 @end
 
-@interface RRRShareView : UIView
+@interface RRRShareView : UIView <UITableViewDataSource>
 
 @property (strong,nonatomic) RRRSingleOrganization * singleOrganization;
 @property (nonatomic, weak) id <ShareButtonDelegate> delegateInstance;
+//@property (nonatomic, strong) UITableView * currenciesTable;
 
 - (instancetype) initWithFrame:(CGRect)frame  andData: (RRRSingleOrganization *)aSingleOrganization;
 

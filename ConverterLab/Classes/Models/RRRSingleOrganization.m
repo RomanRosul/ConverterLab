@@ -42,4 +42,8 @@
   return self;
 }
 
+-(NSString *)description {
+  return [NSString stringWithFormat:@"%@,%@,%@",self.title, self.address, [self.currencies description]];
+}
+
 @end

@@ -9,7 +9,7 @@
 #import "RRRMapViewController.h"
 
 @interface RRRMapViewController ()
-
+@property (strong,nonatomic) MKMapView * mapView;
 @end
 
 @implementation RRRMapViewController
@@ -18,7 +18,7 @@
   [super viewDidLoad];
   self.mapView = [[MKMapView alloc] init];
   self.mapView.frame = [[UIScreen mainScreen]bounds];
-  //CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+  [self.mapView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];  
   self.mapView.delegate = self;
   [self.view addSubview:self.mapView];
   MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.location.coordinate, 500, 500);

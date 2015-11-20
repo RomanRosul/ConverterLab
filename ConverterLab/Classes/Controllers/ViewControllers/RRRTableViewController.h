@@ -17,9 +17,4 @@
 
 @interface RRRTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, TableCellButtonsDelegate, DataBaseManagerDelegate, UISearchResultsUpdating>
 
-@property (strong, nonatomic) NSFetchedResultsController *dataFetchedResultsController;
-@property (strong, nonatomic) UISearchBar *searchBar;
-@property (strong, nonatomic) UISearchController *searchController;
-
-
 @end

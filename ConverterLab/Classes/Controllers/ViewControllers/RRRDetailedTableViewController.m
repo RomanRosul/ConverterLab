@@ -47,13 +47,13 @@
   navController.hamburgerButton = [[RRRHamburgerButtonView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen]bounds].size.width-65, [[UIScreen mainScreen]bounds].size.height-68, 55, 55)];
   [navController.view addSubview: navController.hamburgerButton];    
   navController.hamburgerButton.delegateInstance = self;
+  
+  navController.hamburgerButton.translatesAutoresizingMaskIntoConstraints = NO;
+  [navController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[hamburger(55)]-13-|" options:0 metrics:nil views:@{ @"hamburger" : navController.hamburgerButton}]];
+  [navController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[hamburger(55)]-10-|" options:0 metrics:nil views:@{ @"hamburger" : navController.hamburgerButton}]];
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return self.singleOrganization.currencies.count+2;
@@ -147,6 +147,7 @@
 
 - (void) hamburgerDidPressed {
   RRRHamburgerOverlayView * overlayView = [[ RRRHamburgerOverlayView alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
+  [overlayView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
   overlayView.delegateInstance = self;
   [self.navigationController.view addSubview:overlayView];
 }
@@ -168,8 +169,7 @@
       return;
     }
     CLPlacemark *placemark = (CLPlacemark *)placemarks[0];
-    RRRMapViewController * locationViewController = [RRRMapViewController new];
-   // locationViewController.view.frame = self.view.frame;
+    RRRMapViewController * locationViewController = [RRRMapViewController new];   
     RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
     if (navController.hamburgerButton) {
       [navController.hamburgerButton removeFromSuperview];
@@ -214,6 +214,7 @@
 - (void)navBarShareButtonPressed {
   RRRShareView * shareView = [[RRRShareView alloc] initWithFrame:self.view.frame andData:self.singleOrganization];
   shareView.delegateInstance = self;
+  [shareView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
   [self.navigationController.view addSubview: shareView];
 }
 
@@ -222,7 +223,10 @@
   {
     MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
     [picker setMailComposeDelegate:self];
-    //[self presentViewController:picker animated:YES completion:NULL];
+    [picker setSubject:self.singleOrganization.title];
+    [picker setMessageBody:[self.singleOrganization description] isHTML:NO];
+    [picker setToRecipients:@[@"testingEmail@example.com"]];
+
   }
   else
   {

@@ -19,6 +19,10 @@
 @property (strong, nonatomic) NSDictionary *organizationCities;
 @property (strong, nonatomic) NSDictionary *currenciesList;
 
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+- (NSURL *)applicationDocumentsDirectory;
+
 @end
 
 @implementation RRRDataBaseManager

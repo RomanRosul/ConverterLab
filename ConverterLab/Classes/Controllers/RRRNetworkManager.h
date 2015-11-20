@@ -19,7 +19,6 @@
 typedef void (^operationCompleteBlock) (BOOL success, NSDictionary * result);
 
 @interface RRRNetworkManager : NSObject
-@property (nonatomic) NSURL * dataSourceUrl;
 @property (nonatomic, weak) id <FetchedWebDataDelegate> delegateInstance;
 + (instancetype)sharedNetworkManager;
 - (BOOL) refreshDataSourceFromWeb;

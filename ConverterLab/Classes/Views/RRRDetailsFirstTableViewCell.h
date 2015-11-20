@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *linkLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
-@property (weak, nonatomic) IBOutlet UIView *contentview;
+@property (weak, nonatomic) IBOutlet UIView *content
+;
 
 @end

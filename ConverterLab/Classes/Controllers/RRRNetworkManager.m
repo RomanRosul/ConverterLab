@@ -15,6 +15,7 @@
 
 @interface RRRNetworkManager ()
 @property (strong, nonatomic) NSArray *newsItems;
+@property (nonatomic) NSURL * dataSourceUrl;
 @end
 
 @implementation RRRNetworkManager
@@ -49,7 +50,6 @@
     parameters:nil
        success:^(NSURLSessionDataTask *task, id responseObject) {
          NSDictionary * responseDictionary  = (NSMutableDictionary *)responseObject;
-        // NSLog(@"ok");
          SEL selector = @selector(webDataSourceDidUpdated:);
          if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
          {
@@ -57,8 +57,7 @@
          }
          httpSuccess =  YES;
        }
-       failure:^(NSURLSessionDataTask *task, NSError *error) {
-         //NSLog(@"no");
+       failure:^(NSURLSessionDataTask *task, NSError *error) {         
          SEL selector = @selector(webDataSourceNotUpdated);
          if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
          {

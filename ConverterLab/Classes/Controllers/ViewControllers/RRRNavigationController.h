@@ -12,6 +12,5 @@
 #import "UIColor+fromHex.h"
 
 @interface RRRNavigationController : UINavigationController
-
 @property (nonatomic,strong) RRRHamburgerButtonView * hamburgerButton;
 @end
