@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIView+showHide.h"
 
 @protocol HamburgerButtonDelegate <NSObject>
 @required

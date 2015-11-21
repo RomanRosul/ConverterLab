@@ -15,6 +15,7 @@
   self = [super initWithFrame:frame];
   if (self)
   {
+    self.alpha = 0;
     [self setImage:[UIImage imageNamed:@"ic_hamburger"] forState:UIControlStateNormal];
     self.backgroundColor = [UIColor colorwithHexString:@"#f06292" alpha:1];
     self.layer.cornerRadius = self.frame.size.width/2;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RRRTableViewCell.h"
+#import "UIView+showHide.h"
 
 @interface RRRHamburgerOverlayView : UIView
 @property (nonatomic, weak) id <TableCellButtonsDelegate> delegateInstance;

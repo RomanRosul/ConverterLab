@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RRRSingleOrganization.h"
+#import "UIView+showHide.h"
 
 @protocol ShareButtonDelegate <NSObject>
 @required

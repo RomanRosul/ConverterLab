@@ -19,6 +19,7 @@
   self = [super initWithFrame:frame];
   if (self)
   {
+    self.alpha = 0;
     self.singleOrganization = aSingleOrganization;
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     UIView * contentView = [[UIView alloc] initWithFrame: CGRectMake(10, 80, self.frame.size.width-20, self.frame.size.height-200)];
@@ -100,7 +101,7 @@
 }
 
 - (void)shareButtonPressed {
-  [self removeFromSuperview];
+  [self hideMeAnimated];
   SEL selector = @selector(ShareDidPressed);
   if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
   {
@@ -113,9 +114,8 @@
   UITouch *touch = [touches anyObject];
   if ([touch view] == self)
   {
-    [self removeFromSuperview];
+    [self hideMeAnimated];
   }
 }
-
 
 @end

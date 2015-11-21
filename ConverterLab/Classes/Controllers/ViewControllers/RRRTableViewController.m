@@ -56,7 +56,7 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 - (void) viewWillAppear:(BOOL)animated {
   RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
   if (navController.hamburgerButton) {
-  [navController.hamburgerButton removeFromSuperview];
+  [navController.hamburgerButton hideMeAnimated];
   }
 }
 

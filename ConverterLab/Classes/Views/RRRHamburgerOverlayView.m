@@ -31,6 +31,7 @@
     NSArray *theViewArray =  [[NSBundle mainBundle] loadNibNamed:@"RRRHamburgerOverlayView" owner:self options:nil];
     UIView *theView = [theViewArray objectAtIndex:0];
     theView.frame = self.frame;
+    self.alpha = 0;
     [self addSubview:theView];
     theView.backgroundColor = [UIColor colorwithHexString:@"#eeeeee" alpha:0.9];
     [self makeCirkleFrom:self.closeButton];
@@ -60,11 +61,10 @@
 }
 
 - (IBAction)closeButtonPressed:(id)sender {
-  [self removeFromSuperview];
+  [self hideMeAnimated];
 }
 
 - (IBAction)callButtonPressed:(id)sender {
-  [self removeFromSuperview];
   SEL selector = @selector(buttonCallPressed:);
   if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
   {

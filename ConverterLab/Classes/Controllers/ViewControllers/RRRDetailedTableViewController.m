@@ -50,11 +50,12 @@
 - (void) viewWillAppear:(BOOL)animated {
   RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
   navController.hamburgerButton = [[RRRHamburgerButtonView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen]bounds].size.width-65, [[UIScreen mainScreen]bounds].size.height-68, 55, 55)];
-  [navController.view addSubview: navController.hamburgerButton];    
+  [navController.view addSubview: navController.hamburgerButton];
   navController.hamburgerButton.delegateInstance = self;
   navController.hamburgerButton.translatesAutoresizingMaskIntoConstraints = NO;
   [navController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[hamburger(55)]-13-|" options:0 metrics:nil views:@{ @"hamburger" : navController.hamburgerButton}]];
   [navController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[hamburger(55)]-10-|" options:0 metrics:nil views:@{ @"hamburger" : navController.hamburgerButton}]];
+  [navController.hamburgerButton showMeAnimated];
 }
 
 #pragma mark - Table view data source
@@ -124,8 +125,9 @@
 - (void) hamburgerDidPressed {
   RRRHamburgerOverlayView * overlayView = [[ RRRHamburgerOverlayView alloc] initWithFrame:[[UIScreen mainScreen]bounds] andData:self.singleOrganization];
   [overlayView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-  overlayView.delegateInstance = self;  
+  overlayView.delegateInstance = self;
   [self.navigationController.view addSubview:overlayView];
+  [overlayView showMeAnimated];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
@@ -159,6 +161,7 @@
   shareView.delegateInstance = self;
   [shareView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
   [self.navigationController.view addSubview: shareView];
+  [shareView showMeAnimated];
 }
 
 - (void) ShareDidPressed {
