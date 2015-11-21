@@ -18,10 +18,18 @@
 
 @implementation RRRDetailedTableViewController
 
+-(instancetype)initWithData:(RRRSingleOrganization *)aSingleOrganization {
+  self = [super init];
+  if (self)
+  {
+    self.singleOrganization = aSingleOrganization;
+  }
+  return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
   self.tableView.backgroundColor = [UIColor colorwithHexString:@"#eeeeee" alpha:1];
-  
   UIView * detailedTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
   UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 200, 20)];
   UILabel * subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 200, 20)];
@@ -34,12 +42,9 @@
   [detailedTitleView addSubview:titleLabel];
   [detailedTitleView addSubview:subtitleLabel];
   self.navigationItem.titleView = detailedTitleView;
-  
   UIImage* navBarShareImage = [UIImage imageNamed:@"ic_share"];
   UIBarButtonItem *navBarShareButton = [[UIBarButtonItem alloc] initWithImage:navBarShareImage style:UIBarButtonItemStylePlain target:self action:@selector(navBarShareButtonPressed)];
   self.navigationItem.rightBarButtonItem = navBarShareButton;
-  
-  
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -47,7 +52,6 @@
   navController.hamburgerButton = [[RRRHamburgerButtonView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen]bounds].size.width-65, [[UIScreen mainScreen]bounds].size.height-68, 55, 55)];
   [navController.view addSubview: navController.hamburgerButton];    
   navController.hamburgerButton.delegateInstance = self;
-  
   navController.hamburgerButton.translatesAutoresizingMaskIntoConstraints = NO;
   [navController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[hamburger(55)]-13-|" options:0 metrics:nil views:@{ @"hamburger" : navController.hamburgerButton}]];
   [navController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[hamburger(55)]-10-|" options:0 metrics:nil views:@{ @"hamburger" : navController.hamburgerButton}]];
@@ -79,16 +83,7 @@
     return nil;
 }
 
-//- (UITableViewCell *)blankCell
-//{
-//  NSString *cellID = @"Cell";
-//  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
-//  cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//  return cell;
-//}
-
-- (UITableViewCell *)cellForDetailedInfoForIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)cellForDetailedInfoForIndexPath:(NSIndexPath *)indexPath {
   NSString *cellID = @"FirstCell";
   [self.tableView registerNib:[UINib nibWithNibName:@"RRRDetailsFirstTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
   RRRDetailsFirstTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
@@ -96,22 +91,11 @@
     cell = [[RRRDetailsFirstTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                    reuseIdentifier:cellID];
   }
- // UINib * cellNib = [UINib nibWithNibName:@"RRRDetailsFirstTableViewCell" bundle:nil];
-  //
-  
-//  RRRDetailsFirstTableViewCell *cell = [[RRRDetailsFirstTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-  cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  cell.titleLabel.text = self.singleOrganization.title;
-  cell.linkLabel.text = [NSString stringWithFormat:@"%@",self.singleOrganization.link];
-  cell.addressLabel.text = [NSString stringWithFormat:@"Адрес: %@",self.singleOrganization.address];
-  cell.phoneLabel.text = [NSString stringWithFormat:@"Телефон: %@",self.singleOrganization.phone];  
-  
+  [cell configureCellWithData:self.singleOrganization];
   return cell;
 }
 
-- (UITableViewCell *)cellForCurrencyesHeaderForIndexPath:(NSIndexPath *)indexPath
-
-{
+- (UITableViewCell *)cellForCurrencyesHeaderForIndexPath:(NSIndexPath *)indexPath {
   NSString *cellID = @"SecondCell";
   [self.tableView registerNib:[UINib nibWithNibName:@"RRRDetailsSecondTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
   RRRDetailsSecondTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
@@ -119,7 +103,6 @@
     cell = [[RRRDetailsSecondTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                reuseIdentifier:cellID];
   }
-  cell.selectionStyle = UITableViewCellSelectionStyleNone;
   return cell;
 }
 
@@ -132,62 +115,22 @@
     cell = [[RRRDetailsSecondTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                 reuseIdentifier:cellID];
   }
-
-  cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  RRRSingleCurrency * currency =self.singleOrganization.currencies[index];
-  cell.titleLabel.text = currency.localizedTitle;
-  cell.buyLabel.text = [currency.bid description];
-  cell.sellLabel.text = [currency.ask description];
-  cell.upImage.alpha =1;
-  cell.downImage.alpha =1;
+  [cell configureCellWithData:self.singleOrganization.currencies[index]];
   return cell;
 }
 
 #pragma mark - Hamburger button delegate
 
 - (void) hamburgerDidPressed {
-  RRRHamburgerOverlayView * overlayView = [[ RRRHamburgerOverlayView alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
+  RRRHamburgerOverlayView * overlayView = [[ RRRHamburgerOverlayView alloc] initWithFrame:[[UIScreen mainScreen]bounds] andData:self.singleOrganization];
   [overlayView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-  overlayView.delegateInstance = self;
+  overlayView.delegateInstance = self;  
   [self.navigationController.view addSubview:overlayView];
 }
 
-#pragma mark - Table Cell Buttons delegate
-
-- (void)buttonURLPressed:(NSNumber *)tableRow {
-  NSURL *url = [NSURL URLWithString:self.singleOrganization.link];
-  [[UIApplication sharedApplication] openURL:url];
-}
-
-- (void)buttonMapPressed:(NSNumber *)tableRow {
-   NSString * fullAddressString = [NSString stringWithFormat:@"Ukraine, %@, %@, %@",self.singleOrganization.region,self.singleOrganization.city,self.singleOrganization.address];
-  CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-  [geocoder geocodeAddressString:fullAddressString completionHandler:^(NSArray *placemarks, NSError *error) {
-    if (error != nil)
-    {
-      [self displayError:[NSString stringWithFormat:@"Geocode failed with error: %@", error]];
-      return;
-    }
-    CLPlacemark *placemark = (CLPlacemark *)placemarks[0];
-    RRRMapViewController * locationViewController = [RRRMapViewController new];   
-    RRRNavigationController * navController = (RRRNavigationController *)self.navigationController;
-    if (navController.hamburgerButton) {
-      [navController.hamburgerButton removeFromSuperview];
-    }
-    locationViewController.location = placemark.location;
-    [self.navigationController pushViewController:locationViewController animated:YES];
-  }];
-}
-
-- (void)buttonCallPressed:(NSNumber *)tableRow {
-   NSString *cleanedString = [[self.singleOrganization.phone componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
-  NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:+38%@", cleanedString]];
-  NSLog(@"calling to %@",telURL);
-}
-
 #pragma mark - MFMailComposeViewControllerDelegate
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
   switch (result) {
     case MFMailComposeResultSent:
       NSLog(@"You sent the email.");
@@ -226,30 +169,13 @@
     [picker setSubject:self.singleOrganization.title];
     [picker setMessageBody:[self.singleOrganization description] isHTML:NO];
     [picker setToRecipients:@[@"testingEmail@example.com"]];
-
+//    [self presentViewController:picker animated:YES completion:NULL];    
+    [self displayError:@"Simulator cannot send email"];
   }
   else
   {
     NSLog(@"This device cannot send email");
   }
-
-}
-
-- (void)displayError:(NSString *)message
-{
-  dispatch_async(dispatch_get_main_queue(),^ {    
-    UIAlertController *alertController =
-    [UIAlertController alertControllerWithTitle:@"Message"
-                                        message:message
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *ok =
-    [UIAlertAction actionWithTitle:@"OK"style:UIAlertActionStyleDefault
-                           handler:^(UIAlertAction * action) {
-                             
-                           }];
-    [alertController addAction:ok];
-    [self presentViewController:alertController animated:YES completion:nil];
-  });
 }
 
 @end

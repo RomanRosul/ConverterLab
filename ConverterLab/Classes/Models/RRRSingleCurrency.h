@@ -12,7 +12,7 @@
 
 @property (strong,nonatomic) NSString * localizedTitle;
 @property (strong,nonatomic) NSString * keyTitle;
-@property (strong,nonatomic) NSNumber * ask; // you buy
-@property (strong,nonatomic) NSNumber * bid; // you sell
+@property (strong,nonatomic) NSNumber * ask;
+@property (strong,nonatomic) NSNumber * bid; 
 
 @end

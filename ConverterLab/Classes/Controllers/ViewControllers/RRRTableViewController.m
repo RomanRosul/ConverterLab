@@ -60,8 +60,7 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   }
 }
 
--(void)addSearchBar
-{
+-(void)addSearchBar {
   self.searchBar = [[UISearchBar alloc] init];
   self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
   self.searchController.searchBar.delegate = self;
@@ -77,53 +76,10 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 
 #pragma mark - Table Cell Buttons delegate
 
-- (void)buttonURLPressed:(NSNumber *)tableRow {
-  NSIndexPath *path = [NSIndexPath indexPathForRow:[tableRow integerValue] inSection:0];
-  NSManagedObject *managedObject = [self.dataFetchedResultsController objectAtIndexPath:path];
-  NSURL *url = [NSURL URLWithString:[managedObject valueForKey:@"link"]];
-  [[UIApplication sharedApplication] openURL:url];
-}
-
-- (void)buttonMapPressed:(NSNumber *)tableRow {
-  NSInteger i = [tableRow integerValue];
-  NSString * fullAddressString = [NSString stringWithFormat:@"Ukraine, %@, %@, %@",[self.fetchedArray[i] valueForKey:@"region"],[self.fetchedArray[i] valueForKey:@"city"],[self.fetchedArray[i] valueForKey:@"address"]];
-  CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-  [geocoder geocodeAddressString:fullAddressString completionHandler:^(NSArray *placemarks, NSError *error) {
-    if (error != nil)  {      
-      [self displayError:[NSString stringWithFormat:@"Geocode failed with error: %@", error]];
-      return;
-    }
-    CLPlacemark *placemark = (CLPlacemark *)placemarks[0];
-    RRRMapViewController * locationViewController = [RRRMapViewController new];
-    locationViewController.location = placemark.location;
-    locationViewController.title = [self.fetchedArray[i] valueForKey:@"title"];
-    [self.navigationController pushViewController:locationViewController animated:YES];
-  }];
-}
-
-- (void)buttonCallPressed:(NSNumber *)tableRow {
-  NSInteger i = [tableRow integerValue];
-  NSString *cleanedString = [[[self.fetchedArray[i] valueForKey:@"phone"] componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
-  NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:+38%@", cleanedString]];
- // [[UIApplication sharedApplication] openURL:telURL];
-   NSLog(@"calling to %@",telURL);
-}
-
-- (void)buttonDetailedInfoPressed:(NSNumber *)tableRow {
-   NSInteger i = [tableRow integerValue];
-   RRRSingleOrganization * singleOrganization = [[RRRSingleOrganization alloc]
-    initWithTitle:[self.fetchedArray[i] valueForKey:@"title"]
-    withRegion:[self.fetchedArray[i] valueForKey:@"region"]
-    withCity:[self.fetchedArray[i] valueForKey:@"city"]
-    withAddress:[self.fetchedArray[i] valueForKey:@"address"]
-    withPhone:[self.fetchedArray[i] valueForKey:@"phone"]
-    withLink:[self.fetchedArray[i] valueForKey:@"link"]
-    withCurrencies:[NSKeyedUnarchiver unarchiveObjectWithData:[self.fetchedArray[i] valueForKey:@"currencies"]]];
-  RRRDetailedTableViewController * detailedTableViewController = [RRRDetailedTableViewController new];
-  detailedTableViewController.singleOrganization = singleOrganization;
+- (void)buttonDetailedInfoPressed:(RRRSingleOrganization *)aSingleOrganization {
+    RRRDetailedTableViewController * detailedTableViewController = [[RRRDetailedTableViewController alloc] initWithData:aSingleOrganization];
   [self.navigationController pushViewController:detailedTableViewController animated:YES];
 }
-
 
 #pragma mark - Search Bar delegate
 
@@ -138,7 +94,6 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   if (__dataFetchedResultsController != nil) {
     return __dataFetchedResultsController;
   }
-  
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"Organization" inManagedObjectContext:[RRRDataBaseManager sharedDBManager].managedObjectContext];
   [fetchRequest setEntity:entity];
@@ -174,7 +129,7 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
     NSCompoundPredicate *orMatchPredicates = [NSCompoundPredicate orPredicateWithSubpredicates:searchItemsPredicate];
     [andMatchPredicates addObject:orMatchPredicates];
   }
-    NSCompoundPredicate *finalCompoundPredicate =
+  NSCompoundPredicate *finalCompoundPredicate =
   [NSCompoundPredicate andPredicateWithSubpredicates:andMatchPredicates];
   return finalCompoundPredicate;
 }
@@ -196,27 +151,24 @@ return self.fetchedArray.count;
   if (cell == nil) {
     cell = [[RRRTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RRRCellIdentifier];
   }
-  [self configureCell:cell atIndexPath:indexPath];
-  return cell;
-}
-
-- (void)configureCell:(RRRTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
   NSInteger i = indexPath.row;
-  cell.titleLabel.text = [self.fetchedArray[i] valueForKey:@"title"];
-  cell.regionLabel.text = [self.fetchedArray[i] valueForKey:@"region"];
-  cell.cityLabel.text = [self.fetchedArray[i] valueForKey:@"city"];
-  cell.phoneLabel.text = [NSString stringWithFormat:@"Тел: %@",[self.fetchedArray[i] valueForKey:@"phone"]];
-  cell.addressLabel.text = [NSString stringWithFormat:@"Адрес: %@",[self.fetchedArray[i] valueForKey:@"address"]];
+  RRRSingleOrganization * singleOrganization = [[RRRSingleOrganization alloc]
+                                                initWithTitle:[self.fetchedArray[i] valueForKey:@"title"]
+                                                withRegion:[self.fetchedArray[i] valueForKey:@"region"]
+                                                withCity:[self.fetchedArray[i] valueForKey:@"city"]
+                                                withAddress:[self.fetchedArray[i] valueForKey:@"address"]
+                                                withPhone:[self.fetchedArray[i] valueForKey:@"phone"]
+                                                withLink:[self.fetchedArray[i] valueForKey:@"link"]
+                                                withCurrencies:[NSKeyedUnarchiver unarchiveObjectWithData:[self.fetchedArray[i] valueForKey:@"currencies"]]];
+  
+  [cell configureCellWithData:singleOrganization forIndexPath:indexPath];
   cell.delegateInstance = self;
-  cell.linkButton.tag = indexPath.row;
-  cell.mapButton.tag = indexPath.row;
-  cell.callButton.tag = indexPath.row;
-  cell.detailsButton.tag = indexPath.row;
+  return cell;
 }
 
 #pragma mark - FetchedResultsControllerdelegate
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
   [self refreshDataArray];
   [self unlockUI];
 }
@@ -229,21 +181,6 @@ return self.fetchedArray.count;
 }
 
 #pragma mark - other
-- (void)displayError:(NSString *)message
-{
-  dispatch_async(dispatch_get_main_queue(),^ {
-    UIAlertController *alertController =
-    [UIAlertController alertControllerWithTitle:@"Message"
-                                        message:message
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *ok =
-    [UIAlertAction actionWithTitle:@"OK"style:UIAlertActionStyleDefault
-                           handler:^(UIAlertAction * action) {
-                           }];
-    [alertController addAction:ok];
-    [self presentViewController:alertController animated:YES completion:nil];
-  });
-}
 
 - (void) lockUI {
   self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];

@@ -14,7 +14,8 @@
 #import "RRRMapViewController.h"
 #import "RRRDetailedTableViewController.h"
 #import "RRRSingleOrganization.h"
+#import "RRRBaseTableViewController.h"
 
-@interface RRRTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, TableCellButtonsDelegate, DataBaseManagerDelegate, UISearchResultsUpdating>
+@interface RRRTableViewController : RRRBaseTableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, DataBaseManagerDelegate, UISearchResultsUpdating>
 
 @end

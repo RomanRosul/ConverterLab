@@ -10,6 +10,17 @@
 #import "UIColor+fromHex.h"
 
 @interface RRRTableViewCell()
+@property (weak, nonatomic) IBOutlet UIButton *linkButton;
+@property (weak, nonatomic) IBOutlet UIButton *mapButton;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *detailsButton;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *regionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (nonatomic, strong) CALayer *borderBottom;
+@property (strong,nonatomic) RRRSingleOrganization * singleOrganization;
 @end
 
 @implementation RRRTableViewCell
@@ -21,17 +32,24 @@
   self.contentView.layer.shadowOpacity = .25;  
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void) configureCellWithData:(RRRSingleOrganization *) aSingleOrganization forIndexPath:(NSIndexPath *)indexPath {
+  self.singleOrganization = aSingleOrganization;
+  self.titleLabel.text = self.singleOrganization.title;
+  self.regionLabel.text = self.singleOrganization.region;
+  self.cityLabel.text = self.singleOrganization.city;
+  self.phoneLabel.text = [NSString stringWithFormat:@"Тел: %@", self.singleOrganization.phone ];
+ self.addressLabel.text = [NSString stringWithFormat:@"Адрес: %@",self.singleOrganization.address];
+  self.linkButton.tag = indexPath.row;
+  self.mapButton.tag = indexPath.row;
+  self.callButton.tag = indexPath.row;
+  self.detailsButton.tag = indexPath.row;
 }
 
 - (IBAction)openURLPressed:(id)sender {
   SEL selector = @selector(buttonURLPressed:);
   if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
   {
-    [self.delegateInstance performSelector:selector withObject:[NSNumber numberWithInteger:[sender tag]]];
+    [self.delegateInstance performSelector:selector withObject:self.singleOrganization.link];
   }
   [self.borderBottom removeFromSuperlayer];
 }
@@ -45,7 +63,7 @@
   SEL selector = @selector(buttonMapPressed:);
   if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
   {
-    [self.delegateInstance performSelector:selector withObject:[NSNumber numberWithInteger:[sender tag]]];
+    [self.delegateInstance performSelector:selector withObject:self.singleOrganization];
   }
   [self.borderBottom removeFromSuperlayer];
 }
@@ -60,7 +78,7 @@
   SEL selector = @selector(buttonCallPressed:);
   if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
   {
-    [self.delegateInstance performSelector:selector withObject:[NSNumber numberWithInteger:[sender tag]]];
+    [self.delegateInstance performSelector:selector withObject:self.singleOrganization.phone];
   }
   [self.borderBottom removeFromSuperlayer];
 }
@@ -75,10 +93,11 @@
   SEL selector = @selector(buttonDetailedInfoPressed:);
   if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
   {
-    [self.delegateInstance performSelector:selector withObject:[NSNumber numberWithInteger:[sender tag]]];
+    [self.delegateInstance performSelector:selector withObject:self.singleOrganization];
   }
   [self.borderBottom removeFromSuperlayer];
 }
+
 - (IBAction)detailedButtonTouch:(id)sender {
   [self.detailsButton setImage:[UIImage imageNamed:@"ic_dots_active"] forState:UIControlStateHighlighted];
   [self addUnderlineTo:self.detailsButton];

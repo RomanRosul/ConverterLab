@@ -10,9 +10,19 @@
 
 @interface RRRMapViewController ()
 @property (strong,nonatomic) MKMapView * mapView;
+@property (nonatomic) CLLocation * location;
 @end
 
 @implementation RRRMapViewController
+
+-(instancetype)initWithLocation:(CLLocation *)aLocation {
+  self = [super init];
+  if (self)
+  {
+    self.location = aLocation;
+  }
+  return self;
+}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -26,6 +36,7 @@
   pin.coordinate = self.location.coordinate;
   [self.mapView addAnnotation:pin];
   [self.mapView setRegion:region animated:YES];
-  [self.mapView regionThatFits:region]; }
+  [self.mapView regionThatFits:region];
+}
 
 @end

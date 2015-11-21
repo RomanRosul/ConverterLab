@@ -13,7 +13,7 @@
 - (void)hamburgerDidPressed;
 @end
 
-@interface RRRHamburgerButtonView : UIView
+@interface RRRHamburgerButtonView : UIButton
 
 @property (nonatomic, weak) id <HamburgerButtonDelegate> delegateInstance;
 

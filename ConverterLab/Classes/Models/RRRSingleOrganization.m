@@ -10,8 +10,7 @@
 
 @implementation RRRSingleOrganization
 
--(instancetype)init
-{
+-(instancetype)init {
   self = [super init];
   if (self)
   {
@@ -26,11 +25,9 @@
                  withAddress:(NSString *)aAddress
                    withPhone:(NSString *)aPhone
                     withLink:(NSString *)aLink
-              withCurrencies:(NSMutableArray *)aCurrencies
-{
+              withCurrencies:(NSMutableArray *)aCurrencies {
   self = [super init];
-  if (self)
-  {
+  if (self)   {
     self.title = aTitle;
     self.region = aRegion;
     self.city = aCity;

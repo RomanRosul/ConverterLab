@@ -8,11 +8,6 @@
 
 #import "RRRNavigationController.h"
 
-
-@interface RRRNavigationController ()
-
-@end
-
 @implementation RRRNavigationController
 
 - (void)viewDidLoad {
@@ -20,10 +15,6 @@
   self.navigationBar.barStyle = UIBarStyleBlack;
   self.navigationBar.barTintColor = [UIColor colorwithHexString:@"#37474f" alpha:1];
   self.navigationBar.tintColor= [UIColor whiteColor];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 @end

@@ -11,4 +11,5 @@
 
 @interface RRRHamburgerOverlayView : UIView
 @property (nonatomic, weak) id <TableCellButtonsDelegate> delegateInstance;
+- (instancetype) initWithFrame:(CGRect)frame andData:(RRRSingleOrganization *)aSingleOrganization;
 @end

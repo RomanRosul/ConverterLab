@@ -9,8 +9,7 @@
 #import "UIColor+fromHex.h"
 
 @implementation UIColor (fromHex)
-+ (UIColor *)colorwithHexString:(NSString *)hexStr alpha:(CGFloat)alpha;
-{
++ (UIColor *)colorwithHexString:(NSString *)hexStr alpha:(CGFloat)alpha {
   unsigned int hexint = 0;
   NSScanner *scanner = [NSScanner scannerWithString:hexStr];
   [scanner setCharactersToBeSkipped:[NSCharacterSet

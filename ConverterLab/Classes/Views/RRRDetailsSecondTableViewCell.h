@@ -7,13 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RRRSingleCurrency.h"
 
 @interface RRRDetailsSecondTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *buyLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sellLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *upImage;
-@property (weak, nonatomic) IBOutlet UIImageView *downImage;
-
-
+- (void) configureCellWithData:(RRRSingleCurrency *) currency;
 @end

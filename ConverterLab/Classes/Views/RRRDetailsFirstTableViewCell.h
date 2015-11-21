@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RRRSingleOrganization.h"
 
 @interface RRRDetailsFirstTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *linkLabel;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
-@property (weak, nonatomic) IBOutlet UIView *content;
-
+- (void) configureCellWithData:(RRRSingleOrganization *) singleOrganization;
 @end

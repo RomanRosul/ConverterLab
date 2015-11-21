@@ -15,15 +15,10 @@
   self = [super initWithFrame:frame];
   if (self)
   {
-    UIButton * hamburgerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    [hamburgerButton setImage:[UIImage imageNamed:@"ic_hamburger"] forState:UIControlStateNormal];
-    hamburgerButton.backgroundColor = [UIColor colorwithHexString:@"#f06292" alpha:1];
-    [self addSubview:hamburgerButton];
-    hamburgerButton.layer.cornerRadius = hamburgerButton.frame.size.width/2;
-    [hamburgerButton  addTarget:self
-                                  action:@selector(hamburgerPressed)
-                        forControlEvents:UIControlEventTouchUpInside];
-
+    [self setImage:[UIImage imageNamed:@"ic_hamburger"] forState:UIControlStateNormal];
+    self.backgroundColor = [UIColor colorwithHexString:@"#f06292" alpha:1];
+    self.layer.cornerRadius = self.frame.size.width/2;
+    [self  addTarget:self action:@selector(hamburgerPressed) forControlEvents:UIControlEventTouchUpInside];
   }
   return self;
 }
@@ -34,7 +29,6 @@
   {
     [self.delegateInstance performSelector:selector];
   }
-
 }
 
 @end

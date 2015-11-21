@@ -15,10 +15,6 @@
 @end
 
 @interface RRRShareView : UIView <UITableViewDataSource>
-
-@property (strong,nonatomic) RRRSingleOrganization * singleOrganization;
 @property (nonatomic, weak) id <ShareButtonDelegate> delegateInstance;
-
 - (instancetype) initWithFrame:(CGRect)frame  andData: (RRRSingleOrganization *)aSingleOrganization;
-
 @end

@@ -14,7 +14,10 @@
 #import "RRRDetailsSecondTableViewCell.h"
 #import <MessageUI/MessageUI.h>
 #import "RRRShareView.h"
+#import "RRRBaseTableViewController.h"
 
-@interface RRRDetailedTableViewController : UITableViewController <HamburgerButtonDelegate, TableCellButtonsDelegate, MFMailComposeViewControllerDelegate,ShareButtonDelegate>
+@interface RRRDetailedTableViewController : RRRBaseTableViewController <HamburgerButtonDelegate,  MFMailComposeViewControllerDelegate, ShareButtonDelegate>
+
 @property (strong,nonatomic) RRRSingleOrganization * singleOrganization;
+-(instancetype)initWithData:(RRRSingleOrganization *)aSingleOrganization;
 @end

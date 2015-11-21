@@ -16,11 +16,8 @@
 @end
 
 @interface RRRDataBaseManager : NSObject <FetchedWebDataDelegate>
-
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, weak) id <DataBaseManagerDelegate> delegateInstance;
-
 + (instancetype)sharedDBManager;
 - (void)saveContext;
-
 @end

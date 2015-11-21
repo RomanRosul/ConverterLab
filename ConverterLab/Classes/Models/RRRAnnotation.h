@@ -11,5 +11,4 @@
 
 @interface RRRAnnotation : NSObject <MKAnnotation>
 @property (nonatomic) CLLocationCoordinate2D  coordinate;
-
 @end

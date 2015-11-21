@@ -11,8 +11,6 @@
 #import "AFHTTPSessionManager.h"
 #import "AFHTTPRequestOperation.h"
 
-
-
 @interface RRRNetworkManager ()
 @property (strong, nonatomic) NSArray *newsItems;
 @property (nonatomic) NSURL * dataSourceUrl;
@@ -20,8 +18,7 @@
 
 @implementation RRRNetworkManager
 
--(instancetype)init
-{
+-(instancetype)init {
   self = [super init];
   if (self)
   {
@@ -31,8 +28,7 @@
   return self;
 }
 
-+ (instancetype)sharedNetworkManager
-{
++ (instancetype)sharedNetworkManager {
   static id sharedInstance = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
@@ -40,7 +36,6 @@
   });
   return sharedInstance;
 }
-
 
 - (BOOL) refreshDataSourceFromWeb {
   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

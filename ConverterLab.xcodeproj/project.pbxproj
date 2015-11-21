@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30099EAE1C007E6400794CF5 /* RRRBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30099EAD1C007E6400794CF5 /* RRRBaseTableViewController.m */; };
 		3028DCED1BFFB3E4002E80D5 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3028DCDB1BFFB3E4002E80D5 /* AFHTTPRequestOperation.m */; };
 		3028DCEE1BFFB3E4002E80D5 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3028DCDD1BFFB3E4002E80D5 /* AFHTTPRequestOperationManager.m */; };
 		3028DCEF1BFFB3E4002E80D5 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3028DCDF1BFFB3E4002E80D5 /* AFHTTPSessionManager.m */; };
@@ -48,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30099EAC1C007E6400794CF5 /* RRRBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRBaseTableViewController.h; sourceTree = "<group>"; };
+		30099EAD1C007E6400794CF5 /* RRRBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRBaseTableViewController.m; sourceTree = "<group>"; };
 		3028DCDA1BFFB3E4002E80D5 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		3028DCDB1BFFB3E4002E80D5 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		3028DCDC1BFFB3E4002E80D5 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 				30AAFB0B1BF6A479006B546E /* RRRMapViewController.m */,
 				30A9CB091BF74BF800D3A3E0 /* RRRDetailedTableViewController.h */,
 				30A9CB0A1BF74BF800D3A3E0 /* RRRDetailedTableViewController.m */,
+				30099EAC1C007E6400794CF5 /* RRRBaseTableViewController.h */,
+				30099EAD1C007E6400794CF5 /* RRRBaseTableViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 			files = (
 				30AAFB0D1BF6A479006B546E /* RRRMapViewController.m in Sources */,
 				30D266681BF3C1EB00261977 /* ConverterLab.xcdatamodeld in Sources */,
+				30099EAE1C007E6400794CF5 /* RRRBaseTableViewController.m in Sources */,
 				30D2666A1BF3C1EB00261977 /* main.m in Sources */,
 				30908CF31BF7AF8F00D72889 /* RRRHamburgerOverlayView.m in Sources */,
 				3028DCF21BFFB3E4002E80D5 /* AFURLConnectionOperation.m in Sources */,

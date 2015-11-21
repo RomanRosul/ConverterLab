@@ -18,15 +18,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *callLabel;
 @property (weak, nonatomic) IBOutlet UILabel *linkLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mapLabel;
-
+@property (strong,nonatomic) RRRSingleOrganization * singleOrganization;
 @end
 
 @implementation RRRHamburgerOverlayView
 
-- (instancetype) initWithFrame:(CGRect)frame {
+- (instancetype) initWithFrame:(CGRect)frame andData:(RRRSingleOrganization *)aSingleOrganization {
   self = [super initWithFrame:frame];
   if (self)
   {
+    self.singleOrganization = aSingleOrganization;
     NSArray *theViewArray =  [[NSBundle mainBundle] loadNibNamed:@"RRRHamburgerOverlayView" owner:self options:nil];
     UIView *theView = [theViewArray objectAtIndex:0];
     theView.frame = self.frame;
@@ -67,7 +68,7 @@
   SEL selector = @selector(buttonCallPressed:);
   if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
   {
-    [self.delegateInstance performSelector:selector withObject:[NSNumber numberWithInteger:[sender tag]]];
+    [self.delegateInstance performSelector:selector withObject:self.singleOrganization.phone];
   }
 }
 
@@ -76,7 +77,7 @@
   SEL selector = @selector(buttonURLPressed:);
   if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
   {
-    [self.delegateInstance performSelector:selector withObject:[NSNumber numberWithInteger:[sender tag]]];
+    [self.delegateInstance performSelector:selector withObject:self.singleOrganization.link];
   }
 }
 
@@ -85,7 +86,7 @@
   SEL selector = @selector(buttonMapPressed:);
   if (self.delegateInstance && [self.delegateInstance respondsToSelector:selector])
   {
-    [self.delegateInstance performSelector:selector withObject:[NSNumber numberWithInteger:[sender tag]]];
+    [self.delegateInstance performSelector:selector withObject:self.singleOrganization];
   }
 }
 

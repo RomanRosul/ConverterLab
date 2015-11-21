@@ -15,9 +15,6 @@
 - (void)webDataSourceNotUpdated;
 @end
 
-
-typedef void (^operationCompleteBlock) (BOOL success, NSDictionary * result);
-
 @interface RRRNetworkManager : NSObject
 @property (nonatomic, weak) id <FetchedWebDataDelegate> delegateInstance;
 + (instancetype)sharedNetworkManager;

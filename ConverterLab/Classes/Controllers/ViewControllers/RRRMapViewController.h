@@ -11,7 +11,5 @@
 #import "RRRAnnotation.h"
 
 @interface RRRMapViewController : UIViewController <MKMapViewDelegate>
-
-@property (nonatomic) CLLocation * location;
-
+-(instancetype)initWithLocation:(CLLocation *)aLocation;
 @end
