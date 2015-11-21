@@ -16,6 +16,6 @@
 #import "RRRSingleOrganization.h"
 #import "RRRBaseTableViewController.h"
 
-@interface RRRTableViewController : RRRBaseTableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, DataBaseManagerDelegate, UISearchResultsUpdating>
+@interface RRRTableViewController : RRRBaseTableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, DataBaseManagerDelegate, UISearchResultsUpdating, UIScrollViewDelegate>
 
 @end

@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UISearchController *searchController;
 @property (nonatomic, strong)  UIView * overlayView;
 @property (nonatomic, strong) NSMutableArray * fetchedArray;
+@property (nonatomic) BOOL isScrolling;
 @end
 
 @implementation RRRTableViewController
@@ -36,6 +37,7 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
   self.navigationItem.backBarButtonItem =
   [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
   [self refreshDataArray];
+  self.tableView.bounces = NO;
 }
 
 - (void)refreshDataArray {
@@ -70,8 +72,11 @@ static NSString * const RRRCellIdentifier = @"financialOrganizationCell";
 }
 
 - (void)navBarSearchButtonPressed {
-  self.tableView.tableHeaderView = self.searchController.searchBar;
-  self.searchController.active = YES;
+  if (!self.isScrolling) {
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.searchController.active = YES;
+  }
 }
 
 #pragma mark - Table Cell Buttons delegate
@@ -201,6 +206,13 @@ return self.fetchedArray.count;
     if (self.overlayView) {
       [self.overlayView removeFromSuperview];
     }
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+  self.isScrolling = YES;
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+  self.isScrolling = NO;
 }
 
 @end
